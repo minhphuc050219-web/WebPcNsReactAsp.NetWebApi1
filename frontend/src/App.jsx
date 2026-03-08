@@ -25,7 +25,7 @@ import Department from './admin/department'
 import Account from './admin/Account'
 import ActicleCategory from './admin/ArticleCategory'
 import Article from './admin/Article'
-import Cart from './admin/cart'
+import Cart from './admin/Cart'
 import CartDetail from './admin/CartDetail'
 
 
