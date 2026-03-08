@@ -1,0 +1,25 @@
+Service tự tạo
+Service dùng để xử lý Logic là bộ não nghiệp vụ
+
+👉 Nhiệm vụ
+Xử lý logic chính
+Validate
+Gọi DB
+Mapping Model → DTO
+
+📌 Ví dụ
+public List<ProductResponse> GetAll()
+{
+    return _context.Products
+        .Select(p => new ProductResponse {
+            Id = p.Id,
+            Name = p.Name,
+            CategoryName = p.Category.Name
+        })
+        .ToList();
+}
+
+👉 Service giống như bộ não:
+Quyết định làm gì
+Làm thế nào
+Trả kết quả ra sao

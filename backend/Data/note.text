@@ -1,0 +1,20 @@
+Data tự tạo
+Data dùng để DbContext, Seed Data
+
+👉 Nhiệm vụ
+Kết nối DB
+Khai báo DbContext
+Quản lý Entity
+
+📌 Ví dụ AppDbContext
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions options) : base(options) {}
+
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+}
+
+
+👉 Data là cầu nối:
+Service ↔ Database

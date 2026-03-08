@@ -1,0 +1,31 @@
+Controller tự tạo
+Controller dùng để nhận các request từ Reactjs (Frontend)
+
+👉 Nhiệm vụ
+Nhận request từ React
+Gọi Service để xử lý
+Trả kết quả về cho frontend
+
+❌ Controller KHÔNG:
+Xử lý logic phức tạp
+Viết SQL
+Validate nghiệp vụ dài dòng
+
+📌 Ví dụ
+POST /api/login
+GET  /api/products
+POST /api/products
+
+🔧 Ví dụ code
+[HttpGet]
+public IActionResult GetProducts()
+{
+    var data = _productService.GetAll();
+    return Ok(data);
+}
+
+
+👉 Controller giống như lễ tân:
+Nhận yêu cầu
+Chuyển cho đúng bộ phận
+Trả kết quả

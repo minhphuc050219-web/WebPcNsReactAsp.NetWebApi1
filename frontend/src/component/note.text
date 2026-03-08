@@ -1,0 +1,12 @@
+👉 components = các khối giao diện TÁI SỬ DỤNG được
+
+📌 Nó KHÔNG phải là trang
+📌 Nó KHÔNG gọi API trực tiếp (đa số)
+
+Nó chỉ:
+
+Nhận props
+
+Hiển thị UI
+
+Có thể xử lý sự kiện

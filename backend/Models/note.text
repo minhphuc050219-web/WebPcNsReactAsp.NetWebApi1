@@ -1,0 +1,23 @@
+Models tự tạo
+Models dùng để Entity map DataBase
+
+👉 Nhiệm vụ
+Đại diện cho bảng trong database
+Dùng cho Entity Framework map DB
+
+📌 Ví dụ bảng Product
+| id | name | price | category_id |
+
+🔧 Model tương ứng
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
+}
+
+👉 1 bảng DB = 1 Model
+⚠️ Model KHÔNG dùng để trả trực tiếp cho React (lý do nằm ở DTO)
