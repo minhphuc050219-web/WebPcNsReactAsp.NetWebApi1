@@ -5,7 +5,7 @@ export default function MainLayout() {
       {/* HEADER */}
       <div className="bg-primary text-white p-3">
         <div className="container d-flex align-items-center justify-content-between">
-          <h4 className="fw-bold">NCPC</h4>
+          <h4 className="fw-bold">PHUC TRUONG PC SHOP</h4>
 
           <input className="form-control w-50" placeholder="Bạn cần tìm gì?" />
 
