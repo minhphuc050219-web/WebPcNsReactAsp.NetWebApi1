@@ -1,11 +1,15 @@
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-COPY . ./
-RUN dotnet publish -c Release -o out
+COPY . .
+RUN dotnet restore backend.csproj
+RUN dotnet publish backend.csproj -c Release -o /app/publish
 
+# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out .
 
-ENTRYPOINT ["dotnet", "WebPcNsReactAsp.NetWebApi.dll"]
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "backend.dll"]
