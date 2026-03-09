@@ -29,11 +29,16 @@ export default function MainLayout() {
             <li className="nav-item me-3">
               <Link to="/admin">Trang Admin </Link>
             </li>
+            <li className="nav-item me-3"><Link to="/thuonghieu">Xem thương hiệu</Link></li>
+            <li className="nav-item me-3"><Link to="/loaisp">Xem loại sản phẩm</Link></li>
+            <li className="nav-item me-3"><Link to="/sanpham">Xem sản phẩm</Link></li>
+            <li className="nav-item me-3"><Link to="/loaibv">Xem loai bai viet</Link></li>
+            <li className="nav-item me-3"><Link to="/baiviet">Xem bai viet</Link></li>
+            <li className="nav-item me-3"><Link to="/giohang">Xem gio hang</Link></li>
             <li className="nav-item me-3">PC Gaming</li>
             <li className="nav-item me-3">Laptop</li>
             <li className="nav-item me-3">Linh kiện PC</li>
-            <li className="nav-item me-3">Màn hình</li>
-            <li className="nav-item me-3">Gear</li>
+
           </ul>
         </div>
       </nav>
