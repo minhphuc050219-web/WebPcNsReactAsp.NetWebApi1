@@ -44,16 +44,8 @@ export default function Home() {
       <div className="container">
         {/* BANNER */}
         <div className="row mt-3">
-          <div className="col-md-2">
-            <img src="/banner-left.jpg" className="img-fluid rounded" />
-          </div>
-
-          <div className="col-md-8">
-            <img src="/banner-main.jpg" className="img-fluid rounded" />
-          </div>
-
-          <div className="col-md-2">
-            <img src="/banner-right.jpg" className="img-fluid rounded" />
+          <div className="col-md-15">
+            <img src="images/panelPC.jpg" className="img-fluid rounded" />
           </div>
         </div>
 

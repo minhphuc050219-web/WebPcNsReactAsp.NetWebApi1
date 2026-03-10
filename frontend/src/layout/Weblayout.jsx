@@ -3,9 +3,9 @@ export default function MainLayout() {
   return (
     <div>
       {/* HEADER */}
-      <div className="bg-primary text-white p-3">
+      <div className="bg-primary text-white py-3 fixed-top shadow">
         <div className="container d-flex align-items-center justify-content-between">
-          <h4 className="fw-bold">PHUC TRUONG PC SHOP</h4>
+          <h4 className="fw-bold m-0">PHUC TRUONG PC SHOP</h4>
 
           <input className="form-control w-50" placeholder="Bạn cần tìm gì?" />
 
@@ -20,7 +20,7 @@ export default function MainLayout() {
       </div>
 
       {/* NAVBAR */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm" style={{marginTop:"80px"}}>
         <div className="container">
           <ul className="navbar-nav">
             <li className="nav-item me-3">
@@ -42,7 +42,23 @@ export default function MainLayout() {
           </ul>
         </div>
       </nav>
-      <hr />
+
+      {/* BANNER TRÁI */}
+      <div className="position-fixed top-50 start-0 translate-middle-y d-none d-lg-block ms-2">
+        <img
+          src="/images/panelPC3.jpg"
+          width="140"
+          className="rounded shadow"
+        />
+      </div>
+      {/* BANNER PHẢI */}
+      <div className="position-fixed top-50 end-0 translate-middle-y d-none d-lg-block me-2">
+        <img
+          src="/images/panelPC4.jpg"
+          width="140"
+          className="rounded shadow"
+        />
+      </div>
 
       <Outlet />
 
