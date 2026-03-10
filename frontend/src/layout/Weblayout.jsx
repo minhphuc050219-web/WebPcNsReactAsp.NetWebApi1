@@ -5,7 +5,7 @@ export default function MainLayout() {
       {/* HEADER */}
       <div className="bg-primary text-white py-3 fixed-top shadow">
         <div className="container d-flex align-items-center justify-content-between">
-          <h4 className="fw-bold m-0">PHUC TRUONG PC SHOP</h4>
+          <h4 className="fw-bold m-0">NHÓM 3 PC SHOP</h4>
 
           <input className="form-control w-50" placeholder="Bạn cần tìm gì?" />
 
