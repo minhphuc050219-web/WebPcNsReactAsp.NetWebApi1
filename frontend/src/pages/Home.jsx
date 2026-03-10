@@ -45,7 +45,7 @@ export default function Home() {
         {/* BANNER */}
         <div className="row mt-3">
           <div className="col-md-15">
-            <img src="images/panelPC.jpg" className="img-fluid rounded" />
+            <img src="/images/panelPC.jpg" className="img-fluid rounded" />
           </div>
         </div>
 
