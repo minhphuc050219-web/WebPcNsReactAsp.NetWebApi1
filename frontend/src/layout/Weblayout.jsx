@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 export default function MainLayout() {
   return (
-    <div>
+    <div style={{ paddingTop: "110px" }}>
       {/* HEADER */}
       <div className="bg-primary text-white py-2 fixed-top shadow">
         <div className="container">
@@ -33,7 +33,7 @@ export default function MainLayout() {
       {/* NAVBAR */}
       <nav
         className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm"
-        style={{ marginTop: "70px" }}
+        style={{ marginTop: "15px" }}
       >
         <div className="container">
           <button
