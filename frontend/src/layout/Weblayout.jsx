@@ -3,80 +3,132 @@ export default function MainLayout() {
   return (
     <div>
       {/* HEADER */}
-      <div className="bg-primary text-white py-3 fixed-top shadow">
-        <div className="container d-flex align-items-center justify-content-between">
-          <h4 className="fw-bold m-0">NHÓM 3 PC SHOP</h4>
+      <div className="bg-primary text-white py-2 fixed-top shadow">
+        <div className="container">
+          <div className="row align-items-center">
+            {/* LOGO */}
+            <div className="col-6 col-md-3">
+              <h5 className="fw-bold m-0">NHÓM 3 PC SHOP</h5>
+            </div>
 
-          <input className="form-control w-50" placeholder="Bạn cần tìm gì?" />
+            {/* SEARCH */}
+            <div className="col-12 col-md-6 my-2 my-md-0">
+              <input className="form-control" placeholder="Bạn cần tìm gì?" />
+            </div>
 
-          <div>
-            <button className="btn btn-light me-2">Tài khoản</button>
-            <button className="btn btn-light me-2">
-              <Link to="/login">Login</Link>{" "}
-            </button>
-            <button className="btn btn-warning">Giỏ hàng</button>
+            {/* BUTTON */}
+            <div className="col-6 col-md-3 text-end">
+              <button className="btn btn-light btn-sm me-1">Tài khoản</button>
+
+              <Link to="/login" className="btn btn-light btn-sm me-1">
+                Login
+              </Link>
+
+              <button className="btn btn-warning btn-sm">Giỏ hàng</button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* NAVBAR */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm" style={{marginTop:"80px"}}>
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm"
+        style={{ marginTop: "70px" }}
+      >
         <div className="container">
-          <ul className="navbar-nav">
-            <li className="nav-item me-3">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="nav-item me-3">
-              <Link to="/admin">Trang Admin </Link>
-            </li>
-            <li className="nav-item me-3"><Link to="/thuonghieu">Xem thương hiệu</Link></li>
-            <li className="nav-item me-3"><Link to="/loaisp">Xem loại sản phẩm</Link></li>
-            <li className="nav-item me-3"><Link to="/sanpham">Xem sản phẩm</Link></li>
-            <li className="nav-item me-3"><Link to="/loaibv">Xem loai bai viet</Link></li>
-            <li className="nav-item me-3"><Link to="/baiviet">Xem bai viet</Link></li>
-            <li className="nav-item me-3"><Link to="/giohang">Xem gio hang</Link></li>
-            <li className="nav-item me-3">PC Gaming</li>
-            <li className="nav-item me-3">Laptop</li>
-            <li className="nav-item me-3">Linh kiện PC</li>
-
-          </ul>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="menu">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/admin">
+                  Trang Admin
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/thuonghieu">
+                  Thương hiệu
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/loaisp">
+                  Loại sản phẩm
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/sanpham">
+                  Sản phẩm
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/loaibv">
+                  Loại bài viết
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/baiviet">
+                  Bài viết
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/giohang">
+                  Giỏ hàng
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
 
       {/* BANNER TRÁI */}
-      <div className="position-fixed top-50 start-0 translate-middle-y d-none d-lg-block ms-2">
+      <div className="position-fixed top-50 start-0 translate-middle-y d-none d-xl-block ms-2">
         <img
           src="/images/panelPC3.jpg"
-          width="140"
+          width="130"
           className="rounded shadow"
         />
       </div>
       {/* BANNER PHẢI */}
-      <div className="position-fixed top-50 end-0 translate-middle-y d-none d-lg-block me-2">
+      <div className="position-fixed top-50 end-0 translate-middle-y d-none d-xl-block me-2">
         <img
           src="/images/panelPC4.jpg"
-          width="140"
+          width="130"
           className="rounded shadow"
         />
       </div>
 
-      <Outlet />
+      {/* CONTENT */}
+      <div className="container mt-4">
+        <Outlet />
+      </div>
 
       <hr />
-      <footer class="bg-light pt-4 mt-5">
+      <footer className="bg-light pt-4 mt-5">
         <div class="container">
           {/* VIDEO */}
-          <div className="container text-center mt-5">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/Df2z0F1Wm4"
-              title="YouTube video"
-            ></iframe>
+          <div className="text-center mb-4">
+            <div className="ratio ratio-16x9">
+              <iframe
+                src="https://www.youtube.com/embed/Df2z0F1Wm4"
+                title="YouTube video"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
 
           {/* FAQ */}
-          <div className="container mt-5">
+          <div className="text-center mb-4">
             <h4>Câu hỏi thường gặp</h4>
 
             <div className="accordion" id="faq">
@@ -117,35 +169,36 @@ export default function MainLayout() {
               </div>
             </div>
           </div>
+
           {/* SERVICES */}
-          <div class="row text-center mb-4">
-            <div class="col-md-3">
-              <i class="bi bi-truck fs-3 text-primary"></i>
-              <p class="fw-bold mb-0">CHÍNH SÁCH GIAO HÀNG</p>
-              <small>Nhận hàng và thanh toán tại nhà</small>
+          <div className="row text-center mb-4">
+            <div className="col-6 col-md-3 mb-3">
+              <i className="bi bi-truck fs-3 text-primary"></i>
+              <p className="fw-bold mb-0">Giao hàng</p>
+              <small>Thanh toán tại nhà</small>
             </div>
 
-            <div class="col-md-3">
-              <i class="bi bi-arrow-repeat fs-3 text-primary"></i>
-              <p class="fw-bold mb-0">ĐỔI TRẢ DỄ DÀNG</p>
+            <div className="col-6 col-md-3 mb-3">
+              <i className="bi bi-arrow-repeat fs-3 text-primary"></i>
+              <p className="fw-bold mb-0">Đổi trả</p>
               <small>1 đổi 1 trong 7 ngày</small>
             </div>
 
-            <div class="col-md-3">
-              <i class="bi bi-credit-card fs-3 text-primary"></i>
-              <p class="fw-bold mb-0">THANH TOÁN TIỆN LỢI</p>
-              <small>Tiền mặt, chuyển khoản, trả góp</small>
+            <div className="col-6 col-md-3 mb-3">
+              <i className="bi bi-credit-card fs-3 text-primary"></i>
+              <p className="fw-bold mb-0">Thanh toán</p>
+              <small>Tiền mặt / chuyển khoản</small>
             </div>
 
-            <div class="col-md-3">
-              <i class="bi bi-headset fs-3 text-primary"></i>
-              <p class="fw-bold mb-0">HỖ TRỢ NHIỆT TÌNH</p>
-              <small>Tư vấn và hỗ trợ 24/7</small>
+            <div className="col-6 col-md-3 mb-3">
+              <i className="bi bi-headset fs-3 text-primary"></i>
+              <p className="fw-bold mb-0">Hỗ trợ</p>
+              <small>24/7</small>
             </div>
           </div>
           <hr />
           {/* STORE LIST */}
-          <div class="row">
+          <div className="row text-center mb-4">
             <div class="col-md-4 mb-3">
               <h6 class="fw-bold">Chi nhánh Hà Nội</h6>
 
@@ -175,7 +228,7 @@ export default function MainLayout() {
           <hr />
           {/* INFO */}
           <div class="row">
-            <div class="col-md-3">
+            <div className="col-6 col-md-3 mb-3">
               <h6 class="fw-bold">Về chúng tôi</h6>
               <ul class="list-unstyled">
                 <li>Giới thiệu</li>
@@ -184,7 +237,8 @@ export default function MainLayout() {
                 <li>Liên hệ</li>
               </ul>
             </div>
-            <div class="col-md-3">
+
+            <div className="col-6 col-md-3 mb-3">
               <h6 class="fw-bold">Chính sách</h6>
               <ul class="list-unstyled">
                 <li>Bảo hành</li>
@@ -194,7 +248,7 @@ export default function MainLayout() {
               </ul>
             </div>
 
-            <div class="col-md-3">
+            <div className="col-6 col-md-3 mb-3">
               <h6 class="fw-bold">Hỗ trợ</h6>
               <ul class="list-unstyled">
                 <li>Mua hàng</li>
@@ -204,27 +258,29 @@ export default function MainLayout() {
               </ul>
             </div>
           </div>
-          <div class="col-md-3">
+          {/* ICON */}
+
+          <div className="col-6 col-md-3 mb-3">
             <h6 class="fw-bold">Kết nối với chúng tôi</h6>
             <div class="d-flex gap-2">
-              <a class="btn btn-primary btn-sm">
-                <i class="bi bi-facebook"></i>
-              </a>
+              <button className="btn btn-primary btn-sm">
+                <i className="bi bi-facebook"></i>
+              </button>
 
-              <a class="btn btn-danger btn-sm">
-                <i class="bi bi-youtube"></i>
-              </a>
+              <button className="btn btn-danger btn-sm">
+                <i className="bi bi-youtube"></i>
+              </button>
 
-              <a class="btn btn-dark btn-sm">
-                <i class="bi bi-tiktok"></i>
-              </a>
+              <button className="btn btn-dark btn-sm">
+                <i className="bi bi-tiktok"></i>
+              </button>
             </div>
           </div>
           <hr />
 
           {/* !-- COPYRIGHT -- */}
           <div class="text-center pb-3">
-            <p class="mb-0">© 2026 PC Gaming Store</p>
+            <p class="mb-0">© 2026 PHUC TRUONG PC Gaming Store</p>
           </div>
         </div>
       </footer>
