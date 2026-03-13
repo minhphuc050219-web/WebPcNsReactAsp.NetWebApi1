@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 export default function MainLayout() {
   return (
-    <div style={{ paddingTop: "110px" }}>
+    <div>
       {/* HEADER */}
       <div className="bg-primary text-white py-2 fixed-top shadow">
         <div className="container">
@@ -33,14 +33,14 @@ export default function MainLayout() {
       {/* NAVBAR */}
       <nav
         className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm"
-        style={{ marginTop: "15px" }}
+        style={{ marginTop: "60px" }}
       >
         <div className="container">
           <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#menu"
+            data-bs-target="#menu" style={{ marginTop: "65px" }}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -109,7 +109,7 @@ export default function MainLayout() {
       </div>
 
       {/* CONTENT */}
-      <div className="container mt-4">
+      <div className="container mt-4 ">
         <Outlet />
       </div>
 
