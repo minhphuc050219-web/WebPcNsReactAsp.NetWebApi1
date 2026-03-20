@@ -1,49 +1,115 @@
-import { Link, Outlet } from 'react-router-dom'
-import "../admin/CSS/admin.css"
+import { Link, Outlet } from "react-router-dom";
+import "../admin/CSS/admin.css";
 export default function AdminLayout() {
   return (
     <div className='admin-container'>
       {/* SIDEBAR */}
-      <aside className='sidebar'>
-        <h2 className='logo'>ADMIN PC SHOP</h2>
-        <p className='menu-title'>HOME</p>
-          <Link className="menu" to="/admin">Dashboard</Link>
-          <Link className="menu" to="/">Home</Link>
-        <p className='menu-title'> MANAGEMENT PRODUCTS</p>
-          <Link className="menu" to="/admin/brand">Brand</Link>
-          <Link className="menu" to="/admin/category">Category</Link>
-          <Link className="menu" to="/admin/product">Product</Link>
-        <p className='menu-title'> MANAGEMENT STAFFS</p>
-          <Link className="menu" to="/admin/phongban">Department</Link>
-          <Link className="menu" to="/admin/staff">Staff</Link>
-          <Link className="menu" to="/admin/salary">Salary</Link>
-          <Link className="menu" to="/admin/timekp">Cham Cong</Link>
-        <p className='menu-title'> MANAGEMENT ACCOUNT</p>
-          <Link className="menu" to="/admin/account">Account</Link>
-        <p className='menu-title'> MANAGEMENT ARTICLES</p>
-          <Link className="menu" to="/admin/artcategory">Article Category</Link>
-          <Link className="menu" to="/admin/article">Article</Link>
-          <Link className="menu" to="/admin/cart">Cart</Link>
-          <Link className="menu" to="/admin/cartdetail">Cart Detail</Link>
+      <aside
+        className="bg-dark text-white p-3"
+        style={{ width: "250px", minHeight: "100vh" }}
+      >
+        <h4 className="mb-4">ADMIN PANEL</h4>
+        <ul className="nav flex-column">
+          <p className="menu-title">
+            HOME
+            <li className="nav-item">
+              <Link className="menu" to="/admin">
+                Dashboard
+              </Link>
+              <Link className="menu" to="/">
+                Home
+              </Link>
+            </li>
+          </p>
 
+          <p className="menu-title">
+            {" "}
+            MANAGEMENT PRODUCTS
+            <Link className="menu" to="/admin/brand">
+              Brand
+            </Link>
+            <Link className="menu" to="/admin/category">
+              Category
+            </Link>
+            <Link className="menu" to="/admin/product">
+              Product
+            </Link>
+          </p>
+
+          <p className="menu-title">
+            {" "}
+            MANAGEMENT STAFFS
+            <Link className="menu" to="/admin/phongban">
+              Department
+            </Link>
+            <Link className="menu" to="/admin/staff">
+              Staff
+            </Link>
+            <Link className="menu" to="/admin/salary">
+              Salary
+            </Link>
+            <Link className="menu" to="/admin/timekp">
+              Cham Cong
+            </Link>
+          </p>
+
+          <p className="menu-title">
+            {" "}
+            MANAGEMENT ACCOUNT
+            <Link className="menu" to="/admin/account">
+              Account
+            </Link>
+          </p>
+
+          <p className="menu-title">
+            {" "}
+            MANAGEMENT ARTICLES
+            <Link className="menu" to="/admin/artcategory">
+              Article Category
+            </Link>
+            <Link className="menu" to="/admin/article">
+              Article
+            </Link>
+          </p>
+
+          <p className="menu-title">
+            {" "}
+            MANAGEMENT CART
+            <Link className="menu" to="/admin/cart">
+              Cart
+            </Link>
+            <Link className="menu" to="/admin/cartdetail">
+              Cart Detail
+            </Link>
+          </p>
+        </ul>
       </aside>
-      {/* RIGHT AREA */}
-      <div className='right-area'>
+
+      {/* MAIN */}
+      <div className="flex-grow-1 d-flex flex-column">
         {/* HEADER */}
-        <header className='admin-header'>
-          <h3>Admin Panel</h3>
-          <div className='header-actions'>
-            <span>🔔</span>
-            <img className='avatar' src='https://i.pravatar.cc/40' alt='avatar'/>
+         <header className="bg-light shadow-sm p-3 d-flex justify-content-between">
+          <h5 className="m-0">📊 Admin Dashboard</h5>
+          <div>
+            <button className="btn btn-outline-primary me-2">
+              Notifications
+            </button>
+            <button className="btn btn-outline-danger">
+              Logout
+            </button>
           </div>
         </header>
+
         {/* CONTENT */}
-        <main className='admin-content'>
+        <div className="container-fluid flex-grow-1 mt-4">
           <Outlet />
-        </main>
+        </div>
+
         {/* FOOTER */}
-        <footer className='admin-footer'>© 2026 Admin Dashboard | Powered by You 🚀</footer>
+        <footer className="bg-light text-center p-3 mt-auto">
+          © 2026 Admin Dashboard | Powered by You 🚀
+        </footer>
       </div>
     </div>
-  )
+  );
 }

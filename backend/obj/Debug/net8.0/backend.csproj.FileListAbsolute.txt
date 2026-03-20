@@ -225,3 +225,4 @@ D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.pdb
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.genruntimeconfig.cache
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\ref\backend.dll
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.sourcelink.json
+D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.staticwebassets.runtime.json

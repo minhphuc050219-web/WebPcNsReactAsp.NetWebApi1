@@ -36,6 +36,10 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+// 🔥 Enable Static Files - cho phép truy cập thư mục public
+app.UseStaticFiles();
+
 app.UseRouting();
 app.UseCors("AllowReact");
 app.UseAuthorization();

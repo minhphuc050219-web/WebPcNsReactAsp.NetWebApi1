@@ -3,19 +3,25 @@ export default function ArticleList({ articles }) {
     return <p>Không có article nào</p>;
   }
   return (
-    <ul>
-      {articles.map(b => (
-        <li key={b.maBV}>
-          <strong>{b.maBV}</strong>
-          <strong>{b.tenBV}</strong>  
-          <strong>{b.tomTatBV}</strong>
-          <strong>{b.noiDungBV}</strong>
-          <strong>{b.maLoaiBV}</strong>
-          <strong>{b.trangThaiBV}</strong>
-          <strong>{b.bvImages}</strong>
-          <strong>{b.maLoaiBVNavigation}</strong>
-        </li>
+    <>
+      {articles.map((bv) => (
+        <tr key={bv.maBV}>
+          <td className="text-center fw-semibold">{bv.maBV}</td>
+          <td className="text-center">{bv.tenBV}</td>
+          <td className="text-center">{bv.tomTatBV}</td>
+          <td className="text-center">{bv.noiDungBV}</td>
+          <td className="text-center">{bv.maLoaiBV}</td>
+          <td className="text-center">{bv.trangThaiBV}</td>
+          <td className="text-center">{bv.bvImages}</td>
+
+
+          <td className="text-center">
+            <button className="btn btn-primary">Details</button>{" "}
+            <button className="btn btn-danger">Xóa</button>{" "}
+            <button className="btn btn-success">Sửa</button>
+          </td>
+        </tr>
       ))}
-    </ul>
+    </>
   );
 }

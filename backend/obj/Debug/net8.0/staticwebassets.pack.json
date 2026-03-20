@@ -1,0 +1,81 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesBrand\\1fb5156f-f565-4568-9296-8702ce1d238b_639096121881492020.png",
+      "PackagePath": "staticwebassets\\public\\imagesBrand\\1fb5156f-f565-4568-9296-8702ce1d238b_639096121881492020.png"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesBrand\\asus.png",
+      "PackagePath": "staticwebassets\\public\\imagesBrand\\asus.png"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesBrand\\gigabyte.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesBrand\\gigabyte.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesBrand\\intel.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesBrand\\intel.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesBrand\\msi.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesBrand\\msi.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\cpu.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesCategory\\cpu.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\gpu.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesCategory\\gpu.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\mainbroad.png",
+      "PackagePath": "staticwebassets\\public\\imagesCategory\\mainbroad.png"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\ram.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesCategory\\ram.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\ssd.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesCategory\\ssd.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesProduct\\b660m.png",
+      "PackagePath": "staticwebassets\\public\\imagesProduct\\b660m.png"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesProduct\\i5-12400f.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesProduct\\i5-12400f.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesProduct\\ram16ggb.png",
+      "PackagePath": "staticwebassets\\public\\imagesProduct\\ram16ggb.png"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesProduct\\rtx3060msi.png",
+      "PackagePath": "staticwebassets\\public\\imagesProduct\\rtx3060msi.png"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesProduct\\ssd512.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesProduct\\ssd512.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.backend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.backend.props",
+      "PackagePath": "build\\backend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.backend.props",
+      "PackagePath": "buildMultiTargeting\\backend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.backend.props",
+      "PackagePath": "buildTransitive\\backend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

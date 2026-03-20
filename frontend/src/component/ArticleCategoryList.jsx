@@ -3,14 +3,21 @@ export default function ArticleCategoryList({ articlecategorys }) {
     return <p>Không có article category nào</p>;
   }
   return (
-    <ul>
-      {articlecategorys.map(b => (
-        <li key={b.maLoaiBV}>
-          <strong>{b.maLoaiBV}</strong>
-          <strong>{b.tenLoaiBV}</strong>  
-          <strong>{b.thuTuBV}</strong>
-        </li>
+    <>
+      {articlecategorys.map((bv) => (
+        <tr key={bv.maLoaiBV}>
+          <td className="text-center fw-semibold">{bv.maLoaiBV}</td>
+          <td className="text-center">{bv.tenLoaiBV}</td>
+          <td className="text-center">{bv.thuTuBV}</td>
+
+
+          <td className="text-center">
+            <button className="btn btn-danger">Xóa</button>{" "}
+            <button className="btn btn-success">Sửa</button>
+          </td>
+        </tr>
       ))}
-    </ul>
+    </>
+    
   );
 }
