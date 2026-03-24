@@ -32,8 +32,14 @@ builder.Services.AddCors(options =>
 });
 var app = builder.Build();
 
+// 🔥 Swagger mở mặc định
 app.UseSwagger();
-app.UseSwaggerUI();
+//app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    c.RoutePrefix = string.Empty; // 👉 Quan trọng: mở là vào Swagger luôn
+});
 
 app.UseHttpsRedirection();
 
@@ -45,6 +51,6 @@ app.UseCors("AllowReact");
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapGet("/", () => "Backend API is running 🚀");
+//app.MapGet("/", () => "Backend API is running 🚀");
 
 app.Run();

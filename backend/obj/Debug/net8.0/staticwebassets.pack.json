@@ -1,6 +1,18 @@
 {
   "Files": [
     {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesArticle\\3f300400-3040-4c2c-b6aa-30296f72aa90_639099546681331540.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesArticle\\3f300400-3040-4c2c-b6aa-30296f72aa90_639099546681331540.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesArticle\\cb2f4002-3818-43d4-8a0e-8c1b783890a0_639099545693546513.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesArticle\\cb2f4002-3818-43d4-8a0e-8c1b783890a0_639099545693546513.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesArticle\\d7bb34e7-c70c-48cd-a778-e989df71a8bb_639099546386327144.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesArticle\\d7bb34e7-c70c-48cd-a778-e989df71a8bb_639099546386327144.jpg"
+    },
+    {
       "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesBrand\\1fb5156f-f565-4568-9296-8702ce1d238b_639096121881492020.png",
       "PackagePath": "staticwebassets\\public\\imagesBrand\\1fb5156f-f565-4568-9296-8702ce1d238b_639096121881492020.png"
     },
@@ -19,6 +31,10 @@
     {
       "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesBrand\\msi.jpg",
       "PackagePath": "staticwebassets\\public\\imagesBrand\\msi.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\9e8484df-9653-496d-8356-944d239114a4_639096509916136136.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesCategory\\9e8484df-9653-496d-8356-944d239114a4_639096509916136136.jpg"
     },
     {
       "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\cpu.jpg",
@@ -59,6 +75,26 @@
     {
       "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesProduct\\ssd512.jpg",
       "PackagePath": "staticwebassets\\public\\imagesProduct\\ssd512.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\12ac6e72-52c9-4894-b94b-176c57e196f3_639099892336204218.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesStaff\\12ac6e72-52c9-4894-b94b-176c57e196f3_639099892336204218.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\887678aa-51a2-4e09-930a-9940a03a8a16_639099893543506915.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesStaff\\887678aa-51a2-4e09-930a-9940a03a8a16_639099893543506915.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\a98e1298-35bc-4dbe-a3f3-8262e510b5ee_639099034143214233.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesStaff\\a98e1298-35bc-4dbe-a3f3-8262e510b5ee_639099034143214233.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\b15dbc7b-22ab-4e1c-a3c4-f0b626769f05_639099894103164090.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesStaff\\b15dbc7b-22ab-4e1c-a3c4-f0b626769f05_639099894103164090.jpg"
+    },
+    {
+      "Id": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\b780b027-636d-4d4d-89d5-8c43f78be6cc_639099893166076181.jpg",
+      "PackagePath": "staticwebassets\\public\\imagesStaff\\b780b027-636d-4d4d-89d5-8c43f78be6cc_639099893166076181.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.backend.Microsoft.AspNetCore.StaticWebAssets.props",

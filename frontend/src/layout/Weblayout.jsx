@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import "../pages/CSS/weblayout.css"; // Tạo file CSS riêng nếu cần
 export default function MainLayout() {
   return (
     <div>
@@ -115,7 +116,7 @@ export default function MainLayout() {
 
       <hr />
       <footer className="bg-light pt-4 mt-5">
-        <div class="container">
+        <div className="container">
           {/* VIDEO */}
           <div className="text-center mb-4">
             <div className="ratio ratio-16x9">
@@ -199,38 +200,38 @@ export default function MainLayout() {
           <hr />
           {/* STORE LIST */}
           <div className="row text-center mb-4">
-            <div class="col-md-4 mb-3">
-              <h6 class="fw-bold">Chi nhánh Hà Nội</h6>
+            <div className="col-md-4 mb-3">
+              <h6 className="fw-bold">Chi nhánh Hà Nội</h6>
 
-              <p class="mb-1">4/51 Nguyễn Văn Huyên, Cầu Giấy</p>
+              <p className="mb-1">4/51 Nguyễn Văn Huyên, Cầu Giấy</p>
 
-              <p class="mb-1">83 Thái Hà, Đống Đa</p>
+              <p className="mb-1">83 Thái Hà, Đống Đa</p>
 
-              <p class="mb-1">Số 6 Trần Đại Nghĩa</p>
+              <p className="mb-1">Số 6 Trần Đại Nghĩa</p>
             </div>
 
-            <div class="col-md-4 mb-3">
-              <h6 class="fw-bold">Chi nhánh Hồ Chí Minh</h6>
+            <div className="col-md-4 mb-3">
+              <h6 className="fw-bold">Chi nhánh Hồ Chí Minh</h6>
 
-              <p class="mb-1">602 Lê Hồng Phong, Q10</p>
+              <p className="mb-1">602 Lê Hồng Phong, Q10</p>
 
-              <p class="mb-1">28 Nguyễn Tri Phương</p>
+              <p className="mb-1">28 Nguyễn Tri Phương</p>
             </div>
 
-            <div class="col-md-4 mb-3">
-              <h6 class="fw-bold">Chi nhánh Đà Nẵng</h6>
+            <div className="col-md-4 mb-3">
+              <h6 className="fw-bold">Chi nhánh Đà Nẵng</h6>
 
-              <p class="mb-1">81 Hàm Nghi</p>
+              <p className="mb-1">81 Hàm Nghi</p>
 
-              <p class="mb-1">215 Nguyễn Văn Linh</p>
+              <p className="mb-1">215 Nguyễn Văn Linh</p>
             </div>
           </div>
           <hr />
           {/* INFO */}
-          <div class="row">
+          <div className="row">
             <div className="col-6 col-md-3 mb-3">
-              <h6 class="fw-bold">Về chúng tôi</h6>
-              <ul class="list-unstyled">
+              <h6 className="fw-bold">Về chúng tôi</h6>
+              <ul className="list-unstyled">
                 <li>Giới thiệu</li>
                 <li>Tuyển dụng</li>
                 <li>Tin công nghệ</li>
@@ -239,8 +240,8 @@ export default function MainLayout() {
             </div>
 
             <div className="col-6 col-md-3 mb-3">
-              <h6 class="fw-bold">Chính sách</h6>
-              <ul class="list-unstyled">
+              <h6 className="fw-bold">Chính sách</h6>
+              <ul className="list-unstyled">
                 <li>Bảo hành</li>
                 <li>Đổi trả</li>
                 <li>Giao hàng</li>
@@ -249,8 +250,8 @@ export default function MainLayout() {
             </div>
 
             <div className="col-6 col-md-3 mb-3">
-              <h6 class="fw-bold">Hỗ trợ</h6>
-              <ul class="list-unstyled">
+              <h6 className="fw-bold">Hỗ trợ</h6>
+              <ul className="list-unstyled">
                 <li>Mua hàng</li>
                 <li>Thanh toán</li>
                 <li>Trả góp</li>
@@ -261,8 +262,8 @@ export default function MainLayout() {
           {/* ICON */}
 
           <div className="col-6 col-md-3 mb-3">
-            <h6 class="fw-bold">Kết nối với chúng tôi</h6>
-            <div class="d-flex gap-2">
+            <h6 className="fw-bold">Kết nối với chúng tôi</h6>
+            <div className="d-flex gap-2">
               <button className="btn btn-primary btn-sm">
                 <i className="bi bi-facebook"></i>
               </button>
@@ -279,8 +280,8 @@ export default function MainLayout() {
           <hr />
 
           {/* !-- COPYRIGHT -- */}
-          <div class="text-center pb-3">
-            <p class="mb-0">© 2026 PHUC TRUONG PC Gaming Store</p>
+          <div className="text-center pb-3">
+            <p className="mb-0">© 2026 PHUC TRUONG PC Gaming Store</p>
           </div>
         </div>
       </footer>

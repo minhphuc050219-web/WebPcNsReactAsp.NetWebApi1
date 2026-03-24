@@ -1,17 +1,17 @@
-export default function DepartmentList({departments, onEdit, onDelete}){
-    // Ensure departments is always an array
-    const departmentList = Array.isArray(departments) ? departments : [];
-    
-    if(!departmentList || departmentList.length === 0){
-        return (
+export default function DepartmentList({ departments, onEdit, onDelete }) {
+  // Ensure departments is always an array
+  const departmentList = Array.isArray(departments) ? departments : [];
+
+  if (!departmentList || departmentList.length === 0) {
+    return (
       <tr>
         <td colSpan="4" className="text-center">
           Không có department nào
         </td>
-      </tr> 
+      </tr>
     );
-    }
-    return (
+  }
+  return (
     <>
       {departmentList.map((dp) => (
         <tr key={dp.maPhongBan}>

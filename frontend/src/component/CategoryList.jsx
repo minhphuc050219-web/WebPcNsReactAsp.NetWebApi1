@@ -1,37 +1,45 @@
-export default function CategoryList({categorys}){
-    // Ensure categorys is always an array
-    const categoryList = Array.isArray(categorys) ? categorys : [];
-    
-    if(!categoryList || categoryList.length === 0){
-        return (
+export default function CategoryList({ categories, onEdit, onDelete }) {
+  // Ensure categories is always an array
+  const categoryList = Array.isArray(categories) ? categories : [];
+
+  if (!categoryList || categoryList.length === 0) {
+    return (
       <tr>
         <td colSpan="5" className="text-center">
           Không có category nào
         </td>
       </tr>
     );
-    }
-    return (
+  }
+  return (
     <>
-      {categoryList.map((lsp) => (
-        <tr key={lsp.maLoai}>
-          <td className="text-center fw-semibold">{lsp.maLoai}</td>
-          <td className="text-center">{lsp.tenLoai}</td>
+      {categoryList.map((item) => (
+        <tr key={item.maLoai}>
+          <td className="text-center fw-semibold">{item.maLoai}</td>
+          <td className="text-center">{item.tenLoai}</td>
           <td className="text-center">
-            {lsp.loaiImages && (
+            {item.loaiImages && (
               <img
-                src={`http://localhost:5226/public/imagesCategory/${lsp.loaiImages}`}
-                alt={lsp.tenLoai}
+                src={`http://localhost:5226/public/imagesCategory/${item.loaiImages}`}
+                alt={item.tenLoai}
                 width="80"
               />
             )}
           </td>
-
-          <td className="text-center">{lsp.maBrand}</td>
-
+          <td className="text-center">{item.tenBrand || item.maBrand}</td>
           <td className="text-center">
-            <button className="btn btn-danger">Xóa</button>{" "}
-            <button className="btn btn-success">Sửa</button>
+            <button
+              className="btn btn-danger btn-sm me-2"
+              onClick={() => onDelete(item.maLoai)}
+            >
+              Xóa
+            </button>
+            <button
+              className="btn btn-success btn-sm"
+              onClick={() => onEdit(item)}
+            >
+              Sửa
+            </button>
           </td>
         </tr>
       ))}

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backend.Models;
 
@@ -14,6 +16,11 @@ public partial class staff
     public string? SDT { get; set; }
 
     public bool? GioiTinh { get; set; }
+    public DateOnly? NgaySinh { get; set; }
+    // ✅ CCD 12 SỐ
+    [StringLength(12, MinimumLength = 12)]
+    [RegularExpression(@"^[0-9]{12}$", ErrorMessage = "CCD phải đúng 12 số")]
+    public string? CCD { get; set; }
 
     public decimal? LuongCoBan { get; set; }
 
