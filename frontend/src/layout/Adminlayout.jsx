@@ -72,10 +72,10 @@ export default function AdminLayout() {
           <p className="menu-title">
             {" "}
             MANAGEMENT CART
-            <Link className="menu" to="/admin/cart">
+            <Link className="menu" to="">
               Cart
             </Link>
-            <Link className="menu" to="/admin/cartdetail">
+            <Link className="menu" to="">
               Cart Detail
             </Link>
           </p>

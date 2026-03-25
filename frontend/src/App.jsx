@@ -25,8 +25,6 @@ import Department from './admin/Department'
 import Account from './admin/Account'
 import ActicleCategory from './admin/ArticleCategory'
 import Article from './admin/Article'
-import Cart from './admin/Cart'
-import CartDetail from './admin/CartDetail'
 
 
 function App() {
@@ -59,8 +57,6 @@ function App() {
         <Route path="/admin/account" element={<Account />} />
         <Route path="/admin/artcategory" element={<ActicleCategory />} />
         <Route path="/admin/article" element={<Article />} />
-        <Route path="/admin/cart" element={<Cart />} />
-        <Route path="/admin/cartdetail" element={<CartDetail />} />
 
       </Route>
 
