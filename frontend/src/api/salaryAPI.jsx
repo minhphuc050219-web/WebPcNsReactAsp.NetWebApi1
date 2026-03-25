@@ -1,5 +1,5 @@
 const API_URL = "http://localhost:5226/api/Salary";
-
+import { API_URL } from "./api";
 export async function getSalary() {
   const response = await fetch(API_URL);
 

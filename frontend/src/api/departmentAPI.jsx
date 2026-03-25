@@ -1,5 +1,5 @@
 const API_URL="http://localhost:5226/api/Departments";
-
+import { API_URL } from "./api";
 export async function getDepartment() {
     const response=await fetch(API_URL);
 

@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:5226/api/ArticleCategory";
+import { API_URL } from "./api";
 
 export async function getArticleCategory() {
   const response = await fetch(API_URL);
