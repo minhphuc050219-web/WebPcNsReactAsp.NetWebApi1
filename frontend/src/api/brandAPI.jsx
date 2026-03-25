@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:5226/api/Brand";
-import { API_URL } from "./api";
+
+import { API_URL } from "../api";
 export async function getBrand() {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}/Brand`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch brands");
@@ -18,7 +18,7 @@ export async function createBrand(brandData) {
     formData.append("brandImages", brandData.brandImages);
   }
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}/Brand`, {
     method: "POST",
     body: formData,
   });
@@ -39,7 +39,7 @@ export async function updateBrand(maBrand, brandData) {
     formData.append("brandImages", brandData.brandImages);
   }
 
-  const response = await fetch(`${API_URL}/${maBrand}`, {
+  const response = await fetch(`${API_URL}/Brand/${maBrand}`, {
     method: "PUT",
     body: formData,
   });
@@ -53,7 +53,7 @@ export async function updateBrand(maBrand, brandData) {
 }
 
 export async function searchBrand(keyword) {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(keyword)}`);
+  const response = await fetch(`${API_URL}/Brand/${encodeURIComponent(keyword)}`);
 
   if (!response.ok) {
     throw new Error("Failed to search brands");
@@ -65,7 +65,7 @@ export async function searchBrand(keyword) {
 }
 
 export async function deleteBrand(maBrand) {
-  const response = await fetch(`${API_URL}/${maBrand}`, {
+  const response = await fetch(`${API_URL}/Brand/${maBrand}`, {
     method: "DELETE",
   });
 

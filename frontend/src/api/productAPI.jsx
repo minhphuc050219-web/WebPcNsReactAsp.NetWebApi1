@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:5226/api/Product";
-import { API_URL } from "./api";
+import { API_URL } from "../api";
+
 export async function getProduct() {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}/Product`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch products");
@@ -28,7 +28,7 @@ export async function createProduct(productData) {
     formData.append("hangHoaImages", productData.hlangHoaImages);
   }
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}/Product`, {
     method: "POST",
     body: formData,
   });
@@ -59,7 +59,7 @@ export async function updateProduct(maSanPham, productData) {
     formData.append("hangHoaImages", productData.hangHoaImages);
   }
 
-  const response = await fetch(`${API_URL}/${maSanPham}`, {
+  const response = await fetch(`${API_URL}/Product/${maSanPham}`, {
     method: "PUT",
     body: formData,
   });
@@ -73,7 +73,7 @@ export async function updateProduct(maSanPham, productData) {
 }
 
 export async function searchProduct(keyword) {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(keyword)}`);
+  const response = await fetch(`${API_URL}/Product/${encodeURIComponent(keyword)}`);
 
   if (!response.ok) {
     throw new Error("Failed to search products");
@@ -85,7 +85,7 @@ export async function searchProduct(keyword) {
 }
 
 export async function deleteProduct(maSanPham) {
-  const response = await fetch(`${API_URL}/${maSanPham}`, {
+  const response = await fetch(`${API_URL}/Product/${maSanPham}`, {
     method: "DELETE",
   });
 

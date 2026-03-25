@@ -1,8 +1,7 @@
-const API_URL = "http://localhost:5226/api/Article";
-import { API_URL } from "./api";
+import { API_URL } from "../api";
 
 export async function getArticle() {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}/Article`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch articles");
@@ -23,7 +22,7 @@ export async function createArticle(articleData) {
     formData.append("bvImages", articleData.bvImages);
   }
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}/Article`, {
     method: "POST",
     body: formData,
   });
@@ -48,7 +47,7 @@ export async function updateArticle(maBV, articleData) {
     formData.append("bvImages", articleData.bvImages);
   }
 
-  const response = await fetch(`${API_URL}/${maBV}`, {
+  const response = await fetch(`${API_URL}/Article/${maBV}`, {
     method: "PUT",
     body: formData,
   });
@@ -62,8 +61,8 @@ export async function updateArticle(maBV, articleData) {
 }
 
 export async function searchArticle(keyword) {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(keyword)}`);
-
+  const response = await fetch(`${API_URL}/Article/${encodeURIComponent(keyword)}`);
+  
   if (!response.ok) {
     throw new Error("Failed to search articles");
   }
@@ -74,7 +73,7 @@ export async function searchArticle(keyword) {
 }
 
 export async function deleteArticle(maBV) {
-  const response = await fetch(`${API_URL}/${maBV}`, {
+  const response = await fetch(`${API_URL}/Article/${maBV}`, {
     method: "DELETE",
   });
 

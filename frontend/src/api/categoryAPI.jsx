@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:5226/api/Category";
-import { API_URL } from "./api";
+import { API_URL } from "../api";
+
 export async function getCategory() {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}/Category`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch categories");
@@ -19,7 +19,7 @@ export async function createCategory(categoryData) {
     formData.append("loaiImages", categoryData.loaiImages);
   }
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}/Category`, {
     method: "POST",
     body: formData,
   });
@@ -41,7 +41,7 @@ export async function updateCategory(maLoai, categoryData) {
     formData.append("loaiImages", categoryData.loaiImages);
   }
 
-  const response = await fetch(`${API_URL}/${maLoai}`, {
+  const response = await fetch(`${API_URL}/Category/${maLoai}`, {
     method: "PUT",
     body: formData,
   });
@@ -55,7 +55,7 @@ export async function updateCategory(maLoai, categoryData) {
 }
 
 export async function searchCategory(keyword) {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(keyword)}`);
+  const response = await fetch(`${API_URL}/Category/${encodeURIComponent(keyword)}`);
 
   if (!response.ok) {
     throw new Error("Failed to search categories");
@@ -67,7 +67,7 @@ export async function searchCategory(keyword) {
 }
 
 export async function deleteCategory(maLoai) {
-  const response = await fetch(`${API_URL}/${maLoai}`, {
+  const response = await fetch(`${API_URL}/Category/${maLoai}`, {
     method: "DELETE",
   });
 

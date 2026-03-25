@@ -1,7 +1,7 @@
-const API_URL="http://localhost:5226/api/Departments";
-import { API_URL } from "./api";
+import { API_URL } from "../api";
+
 export async function getDepartment() {
-    const response=await fetch(API_URL);
+    const response=await fetch(`${API_URL}/Departments`);
 
     if(!response.ok){
         throw new Error("Failed to fetch departments");
@@ -15,7 +15,7 @@ export async function createDepartment(departmentData) {
   formData.append("tenPhongBan", departmentData.tenPhongBan);
   formData.append("soLuongNV", departmentData.soLuongNV || 0);
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}/Departments`, {
     method: "POST",
     body: formData,
   });
@@ -34,7 +34,7 @@ export async function updateDepartment(maPhongBan, departmentData) {
   formData.append("tenPhongBan", departmentData.tenPhongBan);
   formData.append("soLuongNV", departmentData.soLuongNV || 0);
 
-  const response = await fetch(`${API_URL}/${maPhongBan}`, {
+  const response = await fetch(`${API_URL}/Departments/${maPhongBan}`, {
     method: "PUT",
     body: formData,
   });
@@ -48,7 +48,7 @@ export async function updateDepartment(maPhongBan, departmentData) {
 }
 
 export async function searchDepartment(keyword) {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(keyword)}`);
+  const response = await fetch(`${API_URL}/Departments/${encodeURIComponent(keyword)}`);
 
   if (!response.ok) {
     throw new Error("Failed to search departments");
@@ -60,7 +60,7 @@ export async function searchDepartment(keyword) {
 }
 
 export async function deleteDepartment(maPhongBan) {
-  const response = await fetch(`${API_URL}/${maPhongBan}`, {
+  const response = await fetch(`${API_URL}/Departments/${maPhongBan}`, {
     method: "DELETE",
   });
 

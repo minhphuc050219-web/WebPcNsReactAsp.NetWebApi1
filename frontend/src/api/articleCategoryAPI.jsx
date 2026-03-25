@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:5226/api/ArticleCategory";
-import { API_URL } from "./api";
+
+import { API_URL } from "../api";
 
 export async function getArticleCategory() {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}/ArticleCategory`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch article Category");
@@ -17,7 +17,7 @@ export async function createArticleCategory(articleCategoryData) {
   formData.append("tenLoaiBV", articleCategoryData.tenLoaiBV);
   formData.append("thuTuBV", articleCategoryData.thuTuBV || 0);
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}/ArticleCategory`, {
     method: "POST",
     body: formData,
   });
@@ -36,7 +36,7 @@ export async function updateArticleCategory(maLoaiBV, articleCategoryData) {
   formData.append("tenLoaiBV", articleCategoryData.tenLoaiBV);
   formData.append("thuTuBV", articleCategoryData.thuTuBV || 0);
 
-  const response = await fetch(`${API_URL}/${maLoaiBV}`, {
+  const response = await fetch(`${API_URL}/ArticleCategory/${maLoaiBV}`, {
     method: "PUT",
     body: formData,
   });
@@ -50,7 +50,7 @@ export async function updateArticleCategory(maLoaiBV, articleCategoryData) {
 }
 
 export async function searchArticleCategory(keyword) {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(keyword)}`);
+  const response = await fetch(`${API_URL}/ArticleCategory/${encodeURIComponent(keyword)}`);
 
   if (!response.ok) {
     throw new Error("Failed to search article categories");
@@ -62,7 +62,7 @@ export async function searchArticleCategory(keyword) {
 }
 
 export async function deleteArticleCategory(maLoaiBV) {
-  const response = await fetch(`${API_URL}/${maLoaiBV}`, {
+  const response = await fetch(`${API_URL}/ArticleCategory/${maLoaiBV}`, {
     method: "DELETE",
   });
 

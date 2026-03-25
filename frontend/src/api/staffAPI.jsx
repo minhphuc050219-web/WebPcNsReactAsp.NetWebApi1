@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:5226/api/Staff";
-import { API_URL } from "./api";
+import { API_URL } from "../api";
+
 export async function getStaff() {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}/Staff`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch staff");
@@ -28,7 +28,7 @@ export async function createStaff(staffData) {
   if (staffData.nvImages) {
     formData.append("nvImages", staffData.nvImages);
   }
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}/Staff`, {
     method: "POST",
     body: formData,
   });
@@ -56,7 +56,7 @@ export async function updateStaff(maNV, staffData) {
     formData.append("nvImages", staffData.nvImages);
   }
 
-  const response = await fetch(`${API_URL}/${maNV}`, {
+  const response = await fetch(`${API_URL}/Staff/${maNV}`, {
     method: "PUT",
     body: formData,
   });
@@ -71,7 +71,7 @@ export async function updateStaff(maNV, staffData) {
 }
 
 export async function searchStaff(keyword) {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(keyword)}`);
+  const response = await fetch(`${API_URL}/Staff/${encodeURIComponent(keyword)}`);
 
   if (!response.ok) {
     throw new Error("Failed to search staff");
@@ -83,7 +83,7 @@ export async function searchStaff(keyword) {
 }
 
 export async function deleteStaff(maNV) {
-  const response = await fetch(`${API_URL}/${maNV}`, {
+  const response = await fetch(`${API_URL}/Staff/${maNV}`, {
     method: "DELETE",
   });
 
