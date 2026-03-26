@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getDepartment } from "../api/departmentAPI";
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 
 export default function StaffUpDel({
   show,
@@ -67,7 +67,7 @@ export default function StaffUpDel({
       });
       // Lấy preview ảnh từ backend URL
       if (editingStaff.nvImages) {
-        setImagePreview(`${API_URL}/public/imagesStaff/${editingStaff.nvImages}`);
+        setImagePreview(`${BASE_URL}/public/imagesStaff/${editingStaff.nvImages}`);
       } else {
         setImagePreview(null);
       }

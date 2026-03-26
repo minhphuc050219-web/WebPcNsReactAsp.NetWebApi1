@@ -1,4 +1,4 @@
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 export default function ProductList({
   products,
   categories = [],
@@ -45,7 +45,7 @@ export default function ProductList({
           <td className="text-center">
             {sp.hangHoaImages && (
               <img
-                src={`${API_URL}/public/imagesProduct/${sp.hangHoaImages}`}
+                src={`${BASE_URL}/public/imagesProduct/${sp.hangHoaImages}`}
                 alt="Product"
                 width="80"
                 height="80"

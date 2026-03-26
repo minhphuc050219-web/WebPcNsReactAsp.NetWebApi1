@@ -1,4 +1,4 @@
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 export default function CategoryList({ categories, onEdit, onDelete }) {
   // Ensure categories is always an array
   const categoryList = Array.isArray(categories) ? categories : [];
@@ -21,7 +21,7 @@ export default function CategoryList({ categories, onEdit, onDelete }) {
           <td className="text-center">
             {item.loaiImages && (
               <img
-                src={`${API_URL}/public/imagesCategory/${item.loaiImages}`}
+                src={`${BASE_URL}/public/imagesCategory/${item.loaiImages}`}
                 alt={item.tenLoai}
                 width="80"
               />

@@ -1,4 +1,4 @@
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 import { useState, useEffect } from "react";
 
 export default function BrandUpDel({ show, onClose, onSubmit, editingBrand = null }) {
@@ -20,7 +20,7 @@ export default function BrandUpDel({ show, onClose, onSubmit, editingBrand = nul
       });
       // Lấy preview ảnh từ backend URL
       if (editingBrand.brandImages) {
-        setImagePreview(`${API_URL}/public/imagesBrand/${editingBrand.brandImages}`);
+        setImagePreview(`${BASE_URL}/public/imagesBrand/${editingBrand.brandImages}`);
       } else {
         setImagePreview(null);
       }

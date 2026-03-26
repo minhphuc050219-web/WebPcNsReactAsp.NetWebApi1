@@ -1,5 +1,5 @@
 import React from "react";
-
+import { BASE_URL } from "../api";
 export default function ArticleDetail({ show, onClose, article, showClose = true }) {
   if (!show || !article) return null;
 
@@ -88,7 +88,7 @@ export default function ArticleDetail({ show, onClose, article, showClose = true
                     {article.bvImages ? (
                       <div className="position-relative">
                         <img
-                          src={`http://localhost:5226/public/imagesArticle/${article.bvImages}`}
+                          src={`${BASE_URL}/public/imagesArticle/${article.bvImages}`}
                           alt={article.tenBV || "Bài viết"}
                           className="img-fluid w-100"
                           style={{

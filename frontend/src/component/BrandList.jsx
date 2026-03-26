@@ -1,4 +1,4 @@
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 export default function BrandList({ brands, onEdit, onDelete }) {
   if (!brands || brands.length === 0) {
     return (
@@ -17,7 +17,7 @@ export default function BrandList({ brands, onEdit, onDelete }) {
           <td className="text-center">{item.tenBrand}</td>
           <td className="text-center">
             <img
-              src={`${API_URL}/public/imagesBrand/${item.brandImages}`}
+              src={`${BASE_URL}/public/imagesBrand/${item.brandImages}`}
               alt=""
               width="80"
             />

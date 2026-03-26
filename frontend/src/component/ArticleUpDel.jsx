@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getArticleCategory } from "../api/articleCategoryAPI";
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 
 export default function ArticleUpDel({ show, onClose, onSubmit, editingArticle = null }) {
   const [formData, setFormData] = useState(
@@ -42,7 +42,7 @@ export default function ArticleUpDel({ show, onClose, onSubmit, editingArticle =
       });
       // Lấy preview ảnh từ backend URL
       if (editingArticle.bvImages) {
-        setImagePreview(`${API_URL}/public/imagesArticle/${editingArticle.bvImages}`);
+        setImagePreview(`${BASE_URL}/public/imagesArticle/${editingArticle.bvImages}`);
       } else {
         setImagePreview(null);
       }

@@ -1,4 +1,4 @@
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 export default function StaffList({
   staffs,
   departments = [],
@@ -44,7 +44,7 @@ export default function StaffList({
           <td className="text-center">
             {nv.nvImages && (
               <img
-                src={`${API_URL}/public/imagesStaff/${nv.nvImages}`}
+                src={`${BASE_URL}/public/imagesStaff/${nv.nvImages}`}
                 alt="Staff"
                 width="80"
                 height="80"

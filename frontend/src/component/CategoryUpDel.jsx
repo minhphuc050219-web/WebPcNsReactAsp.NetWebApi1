@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getBrand } from "../api/brandAPI";
-import { API_URL } from "../apiImages";
+import { BASE_URL } from "../api";
 
 export default function CategoryUpDel({ show, onClose, onSubmit, editingCategory = null }) {
   const [formData, setFormData] = useState(
@@ -23,7 +23,7 @@ export default function CategoryUpDel({ show, onClose, onSubmit, editingCategory
       });
       // Lấy preview ảnh từ backend URL
       if (editingCategory.loaiImages) {
-        setImagePreview(`${API_URL}/public/imagesCategory/${editingCategory.loaiImages}`);
+        setImagePreview(`${BASE_URL}/public/imagesCategory/${editingCategory.loaiImages}`);
       } else {
         setImagePreview(null);
       }
