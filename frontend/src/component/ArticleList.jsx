@@ -1,3 +1,4 @@
+import { API_URL } from "../apiImages";
 export default function ArticleList({ articles, articlecategories = [], onEdit, onDelete, onDetail }) {
     // Helper function to get category name from code
     const getArticleCategoryName = (maLoaiBV) => {
@@ -22,7 +23,7 @@ export default function ArticleList({ articles, articlecategories = [], onEdit, 
           <td className="text-center">
             {bv.bvImages && (
               <img
-                src={`http://localhost:5226/public/imagesArticle/${bv.bvImages}`}
+                src={`${API_URL}/public/imagesArticle/${bv.bvImages}`}
                 alt="Article"
                 width="80"
                 height="80"

@@ -1,4 +1,5 @@
 import React from "react";
+import { API_URL } from "../apiImages";
 
 export default function StaffDetail({ show, onClose, staff, showClose = true }) {
   if (!show || !staff) return null;
@@ -92,7 +93,7 @@ export default function StaffDetail({ show, onClose, staff, showClose = true }) 
                     {staff.nvImages ? (
                       <div className="position-relative">
                         <img
-                          src={`http://localhost:5226/public/imagesStaff/${staff.nvImages}`}
+                          src={`${API_URL}/public/imagesStaff/${staff.nvImages}`}
                           alt={staff.tenNV || "Nhân viên"}
                           className="img-fluid w-100"
                           style={{

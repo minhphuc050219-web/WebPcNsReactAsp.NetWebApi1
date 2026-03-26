@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace backend.Models;
 
 public partial class salary
@@ -12,6 +13,9 @@ public partial class salary
     public int? Thang { get; set; }
 
     public int? Nam { get; set; }
+    public decimal? LuongCoBan { get; set; }
+    public decimal? PhuCap { get; set; }
+    public decimal? Thuong { get; set; }
 
     public int? SoNgayCong { get; set; }
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getBrand } from "../api/brandAPI";
 import { getCategory } from "../api/categoryAPI";
+import { API_URL } from "../apiImages";
 
 export default function ProductUpDel({ show, onClose, onSubmit, editingProduct = null }) {
   const [formData, setFormData] = useState(
@@ -61,9 +62,7 @@ export default function ProductUpDel({ show, onClose, onSubmit, editingProduct =
       });
       // Lấy preview ảnh từ backend URL
       if (editingProduct.hangHoaImages) {
-        setImagePreview(
-          `http://localhost:5226/public/imagesProduct/${editingProduct.hangHoaImages}`
-        );
+         setImagePreview(`${API_URL}/public/imagesProduct/${editingProduct.hangHoaImages}`);
       } else {
         setImagePreview(null);
       }

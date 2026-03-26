@@ -224,6 +224,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.MaNV)
                 .HasMaxLength(10)
                 .IsFixedLength();
+            entity.Property(e => e.LuongCoBan).HasPrecision(15, 2);
+            entity.Property(e => e.PhuCap).HasPrecision(15, 2);
+            entity.Property(e => e.Thuong).HasPrecision(15, 2); 
             entity.Property(e => e.TongLuong).HasPrecision(15, 2);
 
             entity.HasOne(d => d.MaNVNavigation).WithMany(p => p.salary)

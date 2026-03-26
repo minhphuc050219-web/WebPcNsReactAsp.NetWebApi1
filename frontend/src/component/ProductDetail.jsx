@@ -1,5 +1,5 @@
 ﻿import React from "react";
-
+import { API_URL } from "../apiImages";
 export default function ProductDetail({ show, onClose, product, showClose = true }) {
   if (!show || !product) return null;
 
@@ -92,7 +92,7 @@ export default function ProductDetail({ show, onClose, product, showClose = true
                     {product.hangHoaImages ? (
                       <div className="position-relative">
                         <img
-                          src={`http://localhost:5226/public/imagesProduct/${product.hangHoaImages}`}
+                           src={`${API_URL}/public/imagesProduct/${product.hangHoaImages}`}
                           alt={product.tenSanPham || "Sản phẩm"}
                           className="img-fluid w-100"
                           style={{
