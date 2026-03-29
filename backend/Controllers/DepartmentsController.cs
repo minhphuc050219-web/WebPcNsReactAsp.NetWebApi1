@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend.Models;
+using backend.Dtos;
 namespace backend.Controllers
 {
     [ApiController]
@@ -153,13 +154,5 @@ namespace backend.Controllers
                 return StatusCode(500, new { message = "Lỗi khi xóa department: " + ex.Message });
             }
         }
-
-        // DTO cho Create/Update Department
-    public class DepartmentCreateUpdateDto
-    {
-        public string? MaPhongBan { get; set; }
-        public string? TenPhongBan { get; set; }
-        public int? SoLuongNV { get; set; }
-    }
     }
 }

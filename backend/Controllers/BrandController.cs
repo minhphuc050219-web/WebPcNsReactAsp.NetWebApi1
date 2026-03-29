@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
+using backend.Dtos;
 using backend.Models;
 using System.Linq;
 
@@ -238,11 +239,5 @@ namespace backend.Controllers
         }
     }
 
-    // DTO cho Create/Update Brand
-    public class BrandCreateUpdateDto
-    {
-        public string? MaBrand { get; set; }
-        public string? TenBrand { get; set; }
-        public IFormFile? BrandImages { get; set; }
-    }
+   
 }

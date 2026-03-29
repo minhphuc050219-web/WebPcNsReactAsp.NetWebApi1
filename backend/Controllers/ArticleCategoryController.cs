@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend.Models;
+using backend.Dtos;
 using System.Linq;
 
 namespace backend.Controllers
@@ -155,12 +156,5 @@ namespace backend.Controllers
                 return StatusCode(500, new { message = "Lỗi khi xóa article category: " + ex.Message });
             }
         }
-        // DTO cho Create/Update ArticleCategory
-    public class ArticleCategoryCreateUpdateDto
-    {
-        public string? MaLoaiBV { get; set; }
-        public string? TenLoaiBV { get; set; }
-        public int? ThuTuBV { get; set; }
-    }
     }
 }

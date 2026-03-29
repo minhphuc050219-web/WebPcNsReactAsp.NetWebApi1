@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend.Models;
 using System.Linq;
+using backend.Dtos;
 
 namespace backend.Controllers
 {
@@ -243,14 +244,5 @@ namespace backend.Controllers
                 Console.WriteLine("Lỗi khi xóa hình ảnh: " + ex.Message);
             }
         }
-    }
-
-    // DTO cho Create/Update Category
-    public class CategoryCreateUpdateDto
-    {
-        public string? MaLoai { get; set; }
-        public string? TenLoai { get; set; }
-        public string? MaBrand { get; set; }
-        public IFormFile? LoaiImages { get; set; }
     }
 }

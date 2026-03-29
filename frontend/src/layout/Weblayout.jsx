@@ -1,8 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import "../pages/CSS/weblayout.css"; // Tạo file CSS riêng nếu cần
+
 export default function MainLayout() {
   return (
-    <div>
+
+    <div className="container-fluid">
       {/* HEADER */}
       <div className="bg-primary text-white py-2 fixed-top shadow">
         <div className="container">
@@ -34,7 +36,8 @@ export default function MainLayout() {
       {/* NAVBAR */}
       <nav
         className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm"
-        style={{ marginTop: "60px" }}
+
+        style={{ marginTop: "60px", flex: 1 }}
       >
         <div className="container">
           <button
@@ -48,7 +51,8 @@ export default function MainLayout() {
           <div className="collapse navbar-collapse" id="menu">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+
+                <Link className="nav-link active" to="/">
                   Home
                 </Link>
               </li>
@@ -110,7 +114,8 @@ export default function MainLayout() {
       </div>
 
       {/* CONTENT */}
-      <div className="container mt-4 ">
+
+      <div className="container mt-4">
         <Outlet />
       </div>
 
