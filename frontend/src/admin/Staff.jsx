@@ -94,22 +94,22 @@ export default function Staff() {
 
   // Handle submit (add or update)
   const handleSubmit = async (formData) => {
-    try {
-      if (editingStaff) {
-        // Update
-        await updateStaff(editingStaff.maNV, formData);
-        alert("Cập nhật nhân viên thành công!");
-      } else {
-        // Create
-        await createStaff(formData);
-        alert("Thêm nhân viên thành công!");
-      }
-      await loadStaff();
-      setSearchKeyword(""); // Reset search
-    } catch (err) {
-      throw new Error(err.message);
+  try {
+    if (editingStaff) {
+      await updateStaff(editingStaff.maNV, formData);
+      alert("Cập nhật nhân viên thành công!");
+    } else {
+      await createStaff(formData);
+      alert("Thêm nhân viên thành công!");
     }
-  };
+
+    await loadStaff();
+    setSearchKeyword("");
+  } catch (err) {
+    console.error(err);
+    alert(err.message); // 🔥 giờ sẽ hiện lỗi thật
+  }
+};
 
   if (loading && staff.length === 0) return <p>Loading...</p>;
 

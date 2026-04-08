@@ -12,30 +12,36 @@ export async function getStaff() {
 
 export async function createStaff(staffData) {
   const formData = new FormData();
+
   formData.append("maNV", staffData.maNV || "");
   formData.append("tenNV", staffData.tenNV);
   formData.append("diaChi", staffData.diaChi || "");
   formData.append("sdt", staffData.sdt || "");
-  formData.append("gioiTinh", staffData.gioiTinh !== undefined ? staffData.gioiTinh    : true);
+  formData.append("gioiTinh", staffData.gioiTinh ?? true);
   formData.append("ngaySinh", staffData.ngaySinh || "");
   formData.append("ccd", staffData.ccd || "");
   formData.append("luongCoBan", staffData.luongCoBan || 0);
   formData.append("email", staffData.email || "");
   formData.append("password", staffData.password || "");
   formData.append("maPhongBan", staffData.maPhongBan || "");
-  formData.append("role", staffData.role || "");
-  
+  formData.append("role", staffData.role || "user");
+
   if (staffData.nvImages) {
     formData.append("nvImages", staffData.nvImages);
   }
+
   const response = await fetch(`${API_URL}/Staff`, {
     method: "POST",
     body: formData,
   });
+
+
   if (!response.ok) {
-    throw new Error("Failed to create staff");
-  }
-  return await response.json();
+  const errorData = await response.json();
+  console.log("SERVER ERROR:", errorData);
+  throw new Error(errorData.message || "Failed to create staff");
+}
+return await response.text();
 }
 
 export async function updateStaff(maNV, staffData) {
@@ -44,12 +50,17 @@ export async function updateStaff(maNV, staffData) {
   formData.append("tenNV", staffData.tenNV);
   formData.append("diaChi", staffData.diaChi || "");
   formData.append("sdt", staffData.sdt || 0);
-  formData.append("gioiTinh", staffData.gioiTinh !== undefined ? staffData.gioiTinh : true);
+  formData.append(
+    "gioiTinh",
+    staffData.gioiTinh !== undefined ? staffData.gioiTinh : true,
+  );
   formData.append("ngaySinh", staffData.ngaySinh || "");
   formData.append("ccd", staffData.ccd || 0);
   formData.append("luongCoBan", staffData.luongCoBan || 0);
   formData.append("email", staffData.email || "");
-  formData.append("password", staffData.password || "");
+  if (staffData.password) {
+    formData.append("password", staffData.password);
+  }
   formData.append("maPhongBan", staffData.maPhongBan || "");
   formData.append("role", staffData.role || "");
   if (staffData.nvImages) {
@@ -71,7 +82,9 @@ export async function updateStaff(maNV, staffData) {
 }
 
 export async function searchStaff(keyword) {
-  const response = await fetch(`${API_URL}/Staff/${encodeURIComponent(keyword)}`);
+  const response = await fetch(
+    `${API_URL}/Staff/${encodeURIComponent(keyword)}`,
+  );
 
   if (!response.ok) {
     throw new Error("Failed to search staff");

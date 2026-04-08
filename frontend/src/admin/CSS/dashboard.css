@@ -1,0 +1,249 @@
+/* =========================================================
+   DASHBOARD - Animations & Styles
+   ========================================================= */
+
+/* ── Fade in up (stagger via delay) ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3); }
+  50%       { box-shadow: 0 0 0 12px rgba(124, 58, 237, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* SVG line chart draw */
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Progress ring fill */
+@keyframes ringFill {
+  from { stroke-dashoffset: 999; }
+}
+
+/* Donut segment scale */
+@keyframes donutIn {
+  from { opacity: 0; transform: scale(0.7); transform-origin: center; }
+  to   { opacity: 0.9; transform: scale(1); }
+}
+
+/* Float subtle */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ── Wrapper ── */
+.dashboard-wrapper {
+  padding: 4px 0;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ── Stat card ── */
+.stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border: 1px solid #f0f0f0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeInUp 0.5s ease both;
+  height: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Featured big card (purple gradient) */
+.stat-card.featured {
+  background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #7c3aed 100%);
+  color: white;
+  animation: fadeInUp 0.4s ease both, pulseGlow 3s infinite 1s;
+}
+
+.stat-card.featured .stat-label { color: rgba(255,255,255,0.75); }
+.stat-card.featured .stat-sub   { color: rgba(255,255,255,0.6); }
+
+/* ── Numbers ── */
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+.stat-sub {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+.badge-up {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(16,185,129,0.15);
+  color: #059669;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.badge-up.red {
+  background: rgba(239,68,68,0.12);
+  color: #dc2626;
+}
+
+/* ── Chart cards ── */
+.chart-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border: 1px solid #f0f0f0;
+  animation: fadeInUp 0.55s ease both;
+}
+
+.chart-card .card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.chart-card .card-sub {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+/* SVG chart line animation */
+.chart-line {
+  stroke-dasharray: 1000;
+  animation: drawLine 1.8s ease forwards;
+}
+
+/* ── Donut segment ── */
+.donut-seg {
+  animation: donutIn 0.6s ease both;
+}
+
+/* ── Progress ring ── */
+.ring-fill {
+  animation: ringFill 1.4s ease-out both;
+}
+
+/* ── Dark session cards ── */
+.session-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-radius: 16px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeInUp 0.6s ease both;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.session-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+}
+
+.session-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.session-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.session-sub {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Statistics section ── */
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.stat-row:last-child { border-bottom: none; }
+
+.stat-row-label {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.stat-row-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #111827;
+  margin-left: auto;
+}
+
+/* ── Legend dot ── */
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Section header ── */
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+/* Stagger delays */
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.10s; }
+.delay-3 { animation-delay: 0.15s; }
+.delay-4 { animation-delay: 0.20s; }
+.delay-5 { animation-delay: 0.25s; }
+.delay-6 { animation-delay: 0.30s; }
+.delay-7 { animation-delay: 0.35s; }
+.delay-8 { animation-delay: 0.40s; }

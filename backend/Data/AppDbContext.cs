@@ -42,8 +42,8 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<timekeeping> timekeeping { get; set; }
 
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        //=> optionsBuilder.UseMySql("server=localhost;port=3306;database=web_pc_shop;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.3.0-mysql"));
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+    //=> optionsBuilder.UseMySql("server=localhost;port=3306;database=web_pc_shop;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.3.0-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -226,7 +226,7 @@ public partial class AppDbContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.LuongCoBan).HasPrecision(15, 2);
             entity.Property(e => e.PhuCap).HasPrecision(15, 2);
-            entity.Property(e => e.Thuong).HasPrecision(15, 2); 
+            entity.Property(e => e.Thuong).HasPrecision(15, 2);
             entity.Property(e => e.TongLuong).HasPrecision(15, 2);
 
             entity.HasOne(d => d.MaNVNavigation).WithMany(p => p.salary)
@@ -263,6 +263,11 @@ public partial class AppDbContext : DbContext
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("fk_staff_department");
         });
+        modelBuilder.Entity<staff>()
+        .HasOne(s => s.Register)
+        .WithOne(r => r.Staff)
+        .HasForeignKey<staff>(s => s.Id_Register)
+        .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<timekeeping>(entity =>
         {

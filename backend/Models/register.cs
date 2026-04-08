@@ -18,4 +18,10 @@ public partial class register
     public string? DienThoai { get; set; }
 
     public string? Role { get; set; }
+    // 🔥 THÊM MỚI
+    public bool? GioiTinh { get; set; }
+
+    public string? Images { get; set; }
+    // 🔥 NAVIGATION (1 account - 1 staff)
+    public virtual staff? Staff { get; set; }
 }

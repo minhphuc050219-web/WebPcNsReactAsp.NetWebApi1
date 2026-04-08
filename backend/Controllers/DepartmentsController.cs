@@ -17,9 +17,11 @@ namespace backend.Controllers
         }
 
         // GET: api/Departments - Lấy tất cả departments
+        // Trước khi trả dữ liệu, hệ thống tự đồng bộ SoLuongNV theo bảng staff.
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            await SyncAllDepartmentCountsAsync();
             return Ok(await _context.departments.ToListAsync());
         }
 
@@ -29,6 +31,9 @@ namespace backend.Controllers
         {
             try
             {
+                // Mỗi lần xem/tìm kiếm phòng ban, đồng bộ lại số lượng nhân viên thực tế.
+                await SyncAllDepartmentCountsAsync();
+
                 // Nếu để trống thì return tất cả
                 if (string.IsNullOrWhiteSpace(id))
                 {
@@ -40,7 +45,7 @@ namespace backend.Controllers
                 // Tìm kiếm theo MaPhongBan hoặc TenPhongBan
                 var results = await _context.departments
                     .Where(d => d.MaPhongBan.ToLower().Contains(searchKeyword) ||
-                                d.TenPhongBan.ToLower().Contains(searchKeyword))
+                                (d.TenPhongBan ?? string.Empty).ToLower().Contains(searchKeyword))
                     .ToListAsync();
 
                 // Return results (empty array nếu không tìm thấy)
@@ -52,21 +57,25 @@ namespace backend.Controllers
             }
         }
         // POST: api/Departments - Thêm department mới
+        // Lưu ý: SoLuongNV không nhập tay nữa, backend sẽ tự đếm theo staff.MaPhongBan.
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] DepartmentCreateUpdateDto dto)
         {
             try
             {
                 // Validate input
+                if (string.IsNullOrWhiteSpace(dto.MaPhongBan))
+                {
+                    return BadRequest(new { message = "Mã phòng ban không được để trống" });
+                }
+
                 if (string.IsNullOrWhiteSpace(dto.TenPhongBan))
                 {
                     return BadRequest(new { message = "Tên phòng ban không được để trống" });
                 }
 
-                // Generate maPhongBan nếu không có
-                string maPhongBan = string.IsNullOrWhiteSpace(dto.MaPhongBan) 
-                    ? "PB" + DateTime.Now.Ticks.ToString().Substring(0, 8)
-                    : dto.MaPhongBan.Trim();
+                // Không nhập tay SoLuongNV nữa, hệ thống sẽ tự đếm theo staff.MaPhongBan.
+                string maPhongBan = dto.MaPhongBan.Trim();
 
                 // Kiểm tra department đã tồn tại
                 var existingDepartment = await _context.departments.FindAsync(maPhongBan);
@@ -75,11 +84,14 @@ namespace backend.Controllers
                     return BadRequest(new { message = "Mã phòng ban đã tồn tại" });
                 }
 
+                // Nếu đã có staff mang MaPhongBan này từ trước, lấy đúng số lượng để lưu vào department.
+                var soLuongNhanVien = await CountStaffByDepartmentAsync(maPhongBan);
+
                 var department = new departments
                 {
                     MaPhongBan = maPhongBan,
                     TenPhongBan = dto.TenPhongBan.Trim(),
-                    SoLuongNV = dto.SoLuongNV ?? 0
+                    SoLuongNV = soLuongNhanVien
                 };
 
                 
@@ -96,6 +108,7 @@ namespace backend.Controllers
         }
 
         // PUT: api/Departments/{id} - Sửa department
+        // Chỉ sửa thông tin phòng ban, còn SoLuongNV luôn được đếm tự động.
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromForm] DepartmentCreateUpdateDto dto)
         {
@@ -114,10 +127,7 @@ namespace backend.Controllers
                 }
 
                 department.TenPhongBan = dto.TenPhongBan.Trim();
-                if (dto.SoLuongNV.HasValue)
-                {
-                    department.SoLuongNV = dto.SoLuongNV.Value;
-                }
+                department.SoLuongNV = await CountStaffByDepartmentAsync(department.MaPhongBan);
 
                 _context.departments.Update(department);
                 await _context.SaveChangesAsync();
@@ -152,6 +162,35 @@ namespace backend.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Lỗi khi xóa department: " + ex.Message });
+            }
+        }
+
+        // Đếm số nhân viên hiện tại thuộc đúng mã phòng ban.
+        private async Task<int> CountStaffByDepartmentAsync(string maPhongBan)
+        {
+            return await _context.staff.CountAsync(x => x.MaPhongBan == maPhongBan);
+        }
+
+        // Đồng bộ toàn bộ SoLuongNV trong bảng departments theo dữ liệu thật từ bảng staff.
+        // Dùng khi xem danh sách/tìm kiếm để đảm bảo dữ liệu luôn đúng.
+        private async Task SyncAllDepartmentCountsAsync()
+        {
+            var departments = await _context.departments.ToListAsync();
+            var hasChanges = false;
+
+            foreach (var department in departments)
+            {
+                var soLuongNhanVien = await CountStaffByDepartmentAsync(department.MaPhongBan);
+                if (department.SoLuongNV != soLuongNhanVien)
+                {
+                    department.SoLuongNV = soLuongNhanVien;
+                    hasChanges = true;
+                }
+            }
+
+            if (hasChanges)
+            {
+                await _context.SaveChangesAsync();
             }
         }
     }

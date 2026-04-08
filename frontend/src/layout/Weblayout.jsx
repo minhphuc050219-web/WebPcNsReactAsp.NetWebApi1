@@ -1,9 +1,50 @@
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import UserDropdown from "../component/UserDropdown";
+import ProfileModal from "../component/ProfileModal";
+import { getBrand } from "../api/brandAPI";
+import { getCategory } from "../api/categoryAPI";
+import { getArticleCategory } from "../api/articleCategoryAPI";
 import "../pages/CSS/weblayout.css"; // Tạo file CSS riêng nếu cần
 
 export default function MainLayout() {
-  return (
+  const { isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
+  const [showProfile, setShowProfile] = useState(false);
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [articleCategories, setArticleCategories] = useState([]);
 
+  useEffect(() => {
+    const loadNavbarData = async () => {
+      try {
+        const [brandData, categoryData, articleCategoryData] = await Promise.all([
+          getBrand(),
+          getCategory(),
+          getArticleCategory(),
+        ]);
+
+        setBrands(Array.isArray(brandData) ? brandData : []);
+        setCategories(Array.isArray(categoryData) ? categoryData : []);
+        setArticleCategories(Array.isArray(articleCategoryData) ? articleCategoryData : []);
+      } catch {
+        setBrands([]);
+        setCategories([]);
+        setArticleCategories([]);
+      }
+    };
+
+    loadNavbarData();
+  }, []);
+
+  const handleLogout = () => {
+    if (!window.confirm("Bạn có chắc muốn đăng xuất không?")) return;
+    logout();       // xóa token, quay lại trạng thái chưa đăng nhập
+    navigate("/");  // ở lại weblayout nhưng trạng thái chưa login
+  };
+
+  return (
     <div className="container-fluid">
       {/* HEADER */}
       <div className="bg-primary text-white py-2 fixed-top shadow">
@@ -19,15 +60,35 @@ export default function MainLayout() {
               <input className="form-control" placeholder="Bạn cần tìm gì?" />
             </div>
 
-            {/* BUTTON */}
-            <div className="col-6 col-md-3 text-end">
-              <button className="btn btn-light btn-sm me-1">Tài khoản</button>
-
-              <Link to="/login" className="btn btn-light btn-sm me-1">
-                Login
-              </Link>
-
-              <button className="btn btn-warning btn-sm">Giỏ hàng</button>
+            {/* BUTTON - đã đăng nhập: hiện UserDropdown; chưa đăng nhập: hiện nút Login */}
+            <div className="col-6 col-md-3 text-end d-flex align-items-center justify-content-end gap-2">
+              {isLoggedIn ? (
+                /* Đã đăng nhập: avatar + tên → dropdown (Settings, Giỏ hàng, Đăng xuất) */
+                <UserDropdown
+                  onOpenSettings={() => setShowProfile(true)}
+                  onLogout={handleLogout}
+                  extraItems={[
+                    {
+                      icon: "🛒",
+                      label: "Giỏ hàng",
+                      onClick: () => navigate("/giohang"),
+                    },
+                  ]}
+                />
+              ) : (
+                /* Chưa đăng nhập: nút Login và Giỏ hàng */
+                <>
+                  <Link to="/login" className="btn btn-light btn-sm">
+                    Đăng nhập
+                  </Link>
+                  <button
+                    className="btn btn-warning btn-sm"
+                    onClick={() => navigate("/giohang")}
+                  >
+                    🛒 Giỏ hàng
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -57,19 +118,64 @@ export default function MainLayout() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/admin">
-                  Trang Admin
-                </Link>
+                <div className="dropdown">
+                  <button
+                    className="btn btn-link nav-link dropdown-toggle text-decoration-none"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Thương hiệu
+                  </button>
+                  <ul className="dropdown-menu">
+                    {brands.length === 0 ? (
+                      <li>
+                        <span className="dropdown-item-text text-muted">Không có thương hiệu</span>
+                      </li>
+                    ) : (
+                      brands.map((brand) => (
+                        <li key={brand.maBrand ?? brand.tenBrand}>
+                          <Link
+                            className="dropdown-item"
+                            to={`/thuonghieu?brand=${encodeURIComponent(brand.maBrand ?? "")}`}
+                          >
+                            {brand.tenBrand}
+                          </Link>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </div>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/thuonghieu">
-                  Thương hiệu
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/loaisp">
-                  Loại sản phẩm
-                </Link>
+                <div className="dropdown">
+                  <button
+                    className="btn btn-link nav-link dropdown-toggle text-decoration-none"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Loại sản phẩm
+                  </button>
+                  <ul className="dropdown-menu">
+                    {categories.length === 0 ? (
+                      <li>
+                        <span className="dropdown-item-text text-muted">Không có loại sản phẩm</span>
+                      </li>
+                    ) : (
+                      categories.map((category) => (
+                        <li key={category.maLoai ?? category.tenLoai}>
+                          <Link
+                            className="dropdown-item"
+                            to={`/loaisp?maloai=${encodeURIComponent(category.maLoai ?? "")}`}
+                          >
+                            {category.tenLoai}
+                          </Link>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </div>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/sanpham">
@@ -77,9 +183,34 @@ export default function MainLayout() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/loaibv">
-                  Loại bài viết
-                </Link>
+                <div className="dropdown">
+                  <button
+                    className="btn btn-link nav-link dropdown-toggle text-decoration-none"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Loại bài viết
+                  </button>
+                  <ul className="dropdown-menu">
+                    {articleCategories.length === 0 ? (
+                      <li>
+                        <span className="dropdown-item-text text-muted">Không có loại bài viết</span>
+                      </li>
+                    ) : (
+                      articleCategories.map((item) => (
+                        <li key={item.maLoaiBV ?? item.tenLoaiBV}>
+                          <Link
+                            className="dropdown-item"
+                            to={`/loaibv?maloaibv=${encodeURIComponent(item.maLoaiBV ?? "")}`}
+                          >
+                            {item.tenLoaiBV}
+                          </Link>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </div>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/baiviet">
@@ -118,6 +249,12 @@ export default function MainLayout() {
       <div className="container mt-4">
         <Outlet />
       </div>
+
+      {/* Modal sửa thông tin tài khoản - hiện khi bấm Settings trong UserDropdown */}
+      <ProfileModal
+        show={showProfile}
+        onClose={() => setShowProfile(false)}
+      />
 
       <hr />
       <footer className="bg-light pt-4 mt-5">

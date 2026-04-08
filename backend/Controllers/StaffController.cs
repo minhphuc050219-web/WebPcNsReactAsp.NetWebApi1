@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend.Models;
@@ -59,12 +60,28 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] StaffCreateUpdateDto dto)
         {
+            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 // Validate input
                 if (string.IsNullOrWhiteSpace(dto.TenNV))
                 {
                     return BadRequest(new { message = "Tên nhân viên không được để trống" });
+                }
+                if (string.IsNullOrWhiteSpace(dto.Email))
+                    return BadRequest(new { message = "Email không được để trống" });
+
+                var emailExists = await _context.register.AnyAsync(x => x.Email == dto.Email);
+                if (emailExists)
+                    return BadRequest(new { message = "Email đã tồn tại" });
+
+                // Khi thêm staff mới, nếu có MaPhongBan thì phải kiểm tra phòng ban đó tồn tại.
+                var maPhongBan = dto.MaPhongBan?.Trim();
+                if (!string.IsNullOrWhiteSpace(maPhongBan))
+                {
+                    var departmentExists = await _context.departments.AnyAsync(x => x.MaPhongBan == maPhongBan);
+                    if (!departmentExists)
+                        return BadRequest(new { message = "Mã phòng ban không tồn tại" });
                 }
 
                 // Generate maNV nếu không có
@@ -73,10 +90,23 @@ namespace backend.Controllers
                     : dto.MaNV.Trim();
 
                 // Kiểm tra staff đã tồn tại
-                var existingStaff = await _context.staff.FindAsync(maNV);
-                if (existingStaff != null)
-                {
+                if (await _context.staff.AnyAsync(x => x.MaNV == maNV))
                     return BadRequest(new { message = "Mã nhân viên đã tồn tại" });
+                var hasher = new PasswordHasher<string>();
+                var password = string.IsNullOrWhiteSpace(dto.Password) ? "123456" : dto.Password;
+
+                // ⚠️ FIX role về lowercase
+        var role = string.IsNullOrWhiteSpace(dto.Role)
+            ? "user"
+            : dto.Role.Trim().ToLower();
+            
+                // 🔥 Lưu 2 ảnh
+                string? staffImg = null;
+                string? accImg = null;
+                if (dto.NVImages != null)
+                {
+                    staffImg = await SaveImage(dto.NVImages, "imagesStaff");
+                    accImg = await SaveImage(dto.NVImages, "imagesAccount");
                 }
 
                 var staff = new staff
@@ -90,25 +120,44 @@ namespace backend.Controllers
                     CCD = dto.CCD?.Trim(),
                     LuongCoBan = dto.LuongCoBan ?? 0,
                     Email = dto.Email?.Trim(),
-                    Password = dto.Password?.Trim(),
-                    MaPhongBan = dto.MaPhongBan?.Trim(),
+                    Password = string.IsNullOrEmpty(dto.Password) ? null : hasher.HashPassword(null, dto.Password),
+                    MaPhongBan = maPhongBan,
+                    NVImages = staffImg,
                     Role = dto.Role?.Trim(),
                 };
 
-                // Xử lý upload hình ảnh
-                if (dto.NVImages != null && dto.NVImages.Length > 0)
+                // 🔥 TẠO ACCOUNT TƯƠNG ỨNG
+                var account = new register
                 {
-                    staff.NVImages = await SaveImage(dto.NVImages, "imagesStaff");
-                }
-
+                    Username = staff.TenNV,
+                    Email = staff.Email,
+                    Password = hasher.HashPassword(null, dto.Password ?? "123456"),
+                    DienThoai = staff.SDT,
+                    DiaChi = staff.DiaChi,
+                    GioiTinh = staff.GioiTinh,
+                    Images = accImg,
+                    Role = staff.Role
+                };
+                
                 _context.staff.Add(staff);
+                _context.register.Add(account);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetById), new { id = staff.MaNV }, staff);
+                
+
+                // 🔥 link lại
+                staff.Id_Register = account.Id_Register;
+                await _context.SaveChangesAsync();
+
+                // Sau khi thêm staff xong, cập nhật lại SoLuongNV của phòng ban tương ứng.
+                await UpdateDepartmentStaffCountAsync(staff.MaPhongBan);
+                await transaction.CommitAsync();
+
+                return Ok("Thêm staff thành công");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "Lỗi khi thêm staff: " + ex.Message });
+                return StatusCode(500, new { message = "Lỗi khi thêm staff: ",  error = ex.InnerException?.Message ?? ex.Message });
             }
         }
 
@@ -129,6 +178,19 @@ namespace backend.Controllers
                 {
                     return NotFound(new { message = "Staff không tồn tại" });
                 }
+                // Lưu lại phòng ban cũ để nếu staff đổi MaPhongBan thì trừ số lượng ở phòng cũ.
+                var oldMaPhongBan = staff.MaPhongBan;
+
+                var newMaPhongBan = dto.MaPhongBan?.Trim();
+                if (!string.IsNullOrWhiteSpace(newMaPhongBan))
+                {
+                    var departmentExists = await _context.departments.AnyAsync(x => x.MaPhongBan == newMaPhongBan);
+                    if (!departmentExists)
+                        return BadRequest(new { message = "Mã phòng ban không tồn tại" });
+                }
+
+                var account = await _context.register
+            .FirstOrDefaultAsync(x => x.Id_Register == staff.Id_Register);
 
                 staff.TenNV = dto.TenNV?.Trim() ?? staff.TenNV;
                 staff.DiaChi = dto.DiaChi?.Trim() ?? staff.DiaChi;
@@ -138,30 +200,68 @@ namespace backend.Controllers
                 staff.CCD = dto.CCD?.Trim() ?? staff.CCD;
                 staff.LuongCoBan = dto.LuongCoBan ?? staff.LuongCoBan;
                 staff.Email = dto.Email?.Trim() ?? staff.Email;
-                staff.Password = dto.Password?.Trim() ?? staff.Password;
-                staff.MaPhongBan = dto.MaPhongBan?.Trim() ?? staff.MaPhongBan;
+                if (!string.IsNullOrEmpty(dto.Password))
+                {
+                    var hasher = new PasswordHasher<string>();
+                    staff.Password = hasher.HashPassword(null, dto.Password);
+                }
+                staff.MaPhongBan = newMaPhongBan ?? staff.MaPhongBan;
                 staff.Role = dto.Role?.Trim() ?? staff.Role;
 
                 // Xử lý update hình ảnh mới
-                if (dto.NVImages != null && dto.NVImages.Length > 0)
+                // 🔥 update ảnh
+                if (dto.NVImages != null)
                 {
-                    // Lưu ảnh mới trước
-                    var newImageName = await SaveImage(dto.NVImages, "imagesStaff");
-                    if (!string.IsNullOrEmpty(newImageName))
-                    {
-                        // Xóa ảnh cũ sau khi lưu mới thành công
-                        if (!string.IsNullOrEmpty(staff.NVImages))
-                        {
-                            DeleteImage(staff.NVImages, "imagesStaff");
-                        }
-                        staff.NVImages = newImageName;
-                    }
+                    // xóa ảnh cũ
+                    if (!string.IsNullOrEmpty(staff.NVImages))
+                        DeleteImage(staff.NVImages, "imagesStaff");
+
+                    if (account != null && !string.IsNullOrEmpty(account.Images))
+                        DeleteImage(account.Images, "imagesAccount");
+
+                    // lưu ảnh mới
+                    var newStaffImg = await SaveImage(dto.NVImages, "imagesStaff");
+                    var newAccImg = await SaveImage(dto.NVImages, "imagesAccount");
+
+                    staff.NVImages = newStaffImg;
+
+                    if (account != null)
+                        account.Images = newAccImg;
+                }
+                // 🔥 UPDATE STAFF → REGISTER
+                // update account
+                if (account != null)
+                {
+                    account.Username = staff.TenNV;
+                    account.Email = staff.Email;
+                    account.DienThoai = staff.SDT;
+                    account.DiaChi = staff.DiaChi;
+                    account.GioiTinh = staff.GioiTinh;
                 }
 
-                _context.staff.Update(staff);
                 await _context.SaveChangesAsync();
 
-                return Ok(new { message = "Cập nhật staff thành công", data = staff });
+                // Luôn cập nhật lại phòng cũ trước.
+                await UpdateDepartmentStaffCountAsync(oldMaPhongBan);
+                if (!string.Equals(oldMaPhongBan, staff.MaPhongBan, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Nếu đổi sang phòng ban mới thì cập nhật luôn phòng mới.
+                    await UpdateDepartmentStaffCountAsync(staff.MaPhongBan);
+                }
+
+                return Ok(new
+                {
+                    message = "Cập nhật staff thành công",
+                    data = new
+                    {
+                        staff.MaNV,
+                        staff.TenNV,
+                        staff.Email,
+                        staff.SDT,
+                        staff.DiaChi,
+                        staff.NVImages
+                    }
+                });
             }
             catch (Exception ex)
             {
@@ -180,15 +280,28 @@ namespace backend.Controllers
                 {
                     return NotFound(new { message = "Staff không tồn tại" });
                 }
+                // 🔥 LẤY ACCOUNT LIÊN KẾT
+                var account = await _context.register
+                    .FirstOrDefaultAsync(x => x.Id_Register == staff.Id_Register);
 
                 // Xóa hình ảnh nếu tồn tại
                 if (!string.IsNullOrEmpty(staff.NVImages))
-                {
                     DeleteImage(staff.NVImages, "imagesStaff");
-                }
+                // 🔥 XÓA ACCOUNT (KHÔNG CHECK ROLE)
+                if (account != null && !string.IsNullOrEmpty(account.Images))
+                    DeleteImage(account.Images, "imagesAccount");
 
+                // 🔥 xóa DB
+                if (account != null)
+                    _context.register.Remove(account);
+
+                // Lưu MaPhongBan trước khi xóa staff để còn cập nhật lại số lượng nhân viên.
+                var maPhongBan = staff.MaPhongBan;
                 _context.staff.Remove(staff);
                 await _context.SaveChangesAsync();
+
+                // Sau khi xóa nhân viên, cập nhật lại SoLuongNV của phòng ban cũ.
+                await UpdateDepartmentStaffCountAsync(maPhongBan);
 
                 return Ok(new { message = "Xóa staff thành công" });
             }
@@ -260,6 +373,21 @@ namespace backend.Controllers
             {
                 Console.WriteLine("Lỗi khi xóa hình ảnh: " + ex.Message);
             }
+        }
+
+        // Hàm dùng lại ở Create/Update/Delete staff.
+        // Mỗi lần staff thay đổi, số lượng nhân viên trong departments sẽ được đếm lại từ bảng staff.
+        private async Task UpdateDepartmentStaffCountAsync(string? maPhongBan)
+        {
+            if (string.IsNullOrWhiteSpace(maPhongBan))
+                return;
+
+            var department = await _context.departments.FindAsync(maPhongBan);
+            if (department == null)
+                return;
+
+            department.SoLuongNV = await _context.staff.CountAsync(x => x.MaPhongBan == maPhongBan);
+            await _context.SaveChangesAsync();
         }
     }
 }

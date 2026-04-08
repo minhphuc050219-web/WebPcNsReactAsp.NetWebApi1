@@ -22,7 +22,8 @@ export default function StaffUpDel({
           luongCoBan: editingStaff.luongCoBan || 0,
           nvImages: null,
           email: editingStaff.email || "",
-          password: editingStaff.password || "",
+          //password: editingStaff.password || "",
+          password: "", // 🔥 không bind password
           maPhongBan: editingStaff.maPhongBan || "",
           role: editingStaff.role || "user",
         }
@@ -67,7 +68,9 @@ export default function StaffUpDel({
       });
       // Lấy preview ảnh từ backend URL
       if (editingStaff.nvImages) {
-        setImagePreview(`${BASE_URL}/public/imagesStaff/${editingStaff.nvImages}`);
+        setImagePreview(
+          `${BASE_URL}/public/imagesStaff/${editingStaff.nvImages}`,
+        );
       } else {
         setImagePreview(null);
       }
@@ -188,7 +191,10 @@ export default function StaffUpDel({
               {/* Mã Nhân Viên */}
               <div className="mb-3">
                 <label htmlFor="maNV" className="form-label">
-                  Mã Nhân Viên {!editingStaff && <span className="text-muted">(Tự động)</span>}
+                  Mã Nhân Viên{" "}
+                  {!editingStaff && (
+                    <span className="text-muted">(Tự động)</span>
+                  )}
                 </label>
                 <input
                   type="text"
@@ -396,16 +402,15 @@ export default function StaffUpDel({
                   Mật Khẩu *
                 </label>
                 <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  placeholder="Nhập mật khẩu"
-                  disabled={loading}
-                />
+                type="password"
+                className="form-control"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Nhập mật khẩu (bỏ trống nếu không đổi)"
+              />
               </div>
+              
 
               {/* Mã Department */}
               <div className="mb-3">
@@ -443,7 +448,9 @@ export default function StaffUpDel({
                     setFormData({ ...formData, role: e.target.value })
                   }
                 >
-                  <option value="user">User</option>
+                  <option value="staff">Staff</option>
+                  <option value="leader">Leader</option>
+                  <option value="manager">Manager</option>
                   <option value="admin">Admin</option>
                 </select>
               </div>

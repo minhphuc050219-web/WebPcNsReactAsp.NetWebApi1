@@ -33,6 +33,11 @@ public partial class staff
     public string? MaPhongBan { get; set; }
 
     public string? Role { get; set; }
+    // 🔥 THÊM MỚI (FK)
+    public int? Id_Register { get; set; }
+
+    // 🔥 NAVIGATION
+    public virtual register? Register { get; set; }
 
     public virtual departments? MaPhongBanNavigation { get; set; }
 

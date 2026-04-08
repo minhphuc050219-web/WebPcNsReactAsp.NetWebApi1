@@ -139,9 +139,9 @@ export default function StaffDetail({ show, onClose, staff, showClose = true }) 
                           <i className="bi bi-box me-1"></i>Giới Tính: {staff.gioiTinh ? "Nam" : "Nữ"}
                         </span>
                         <span
-                          className={`badge px-3 py-2 rounded-pill fw-semibold ${staff.role  ? "bg-success" : "bg-danger"}`}
+                          className={`badge px-3 py-2 rounded-pill fw-semibold ${staff.role === "admin" ? "bg-danger" : staff.role === "manager" ? "bg-warning" : staff.role === "leader" ? "bg-success" : "bg-info" }`}
                         >
-                          {staff.role ? "Người dùng" : "Admin"}
+                          {staff.role === "admin" ? "Admin" : staff.role === "manager" ? "Manager" : staff.role === "leader" ? "Leader" : "Staff"}
                         </span>
                       </div>
                       <div className="row g-2">

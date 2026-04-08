@@ -58,7 +58,12 @@ export default function StaffList({
             </span>
           </td>
           <td className="text-center">
-            <span className="badge bg-success">{nv.role}</span>
+            {/* <span className={`badge ${nv.role ? "bg-success" : "bg-info"}`}>
+              {nv.role ? "admin" : "user"}
+            </span>} */}
+            <span className={`badge ${nv.role === "admin" ? "bg-danger" : nv.role === "leader" ? "bg-success" :nv.role === "manager" ? "bg-warning" : "bg-info"}`}>
+              {nv.role === "admin" ? "admin" : nv.role === "manager" ? "manager" : nv.role === "leader" ? "leader" : "staff"}
+            </span>
           </td>
           <td className="text-center">
             <button
