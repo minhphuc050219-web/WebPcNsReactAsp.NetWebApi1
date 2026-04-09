@@ -14,11 +14,3 @@ COPY --from=build /app/publish .
 
 ENTRYPOINT ["dotnet", "backend.dll"]
 
-FROM mysql:8.0
-
-ENV MYSQL_ROOT_PASSWORD=root123
-ENV MYSQL_DATABASE=mydb
-ENV MYSQL_USER=user
-ENV MYSQL_PASSWORD=pass123
-
-EXPOSE 3306
