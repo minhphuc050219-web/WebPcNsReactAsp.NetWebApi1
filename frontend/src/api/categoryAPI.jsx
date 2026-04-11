@@ -14,7 +14,6 @@ export async function createCategory(categoryData) {
   const formData = new FormData();
   formData.append("maLoai", categoryData.maLoai || "");
   formData.append("tenLoai", categoryData.tenLoai);
-  formData.append("maBrand", categoryData.maBrand || "");
   if (categoryData.loaiImages) {
     formData.append("loaiImages", categoryData.loaiImages);
   }
@@ -36,7 +35,6 @@ export async function updateCategory(maLoai, categoryData) {
   const formData = new FormData();
   formData.append("maLoai", maLoai);
   formData.append("tenLoai", categoryData.tenLoai);
-  formData.append("maBrand", categoryData.maBrand || "");
   if (categoryData.loaiImages) {
     formData.append("loaiImages", categoryData.loaiImages);
   }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCategory, createCategory, updateCategory, deleteCategory, searchCategory } from "../api/categoryAPI";
-import { getBrand } from "../api/brandAPI";
+import { getCategory, createCategory, updateCategory, deleteCategory } from "../api/categoryAPI";
 import CategoryList from "../component/CategoryList";
 import CategoryUpDel from "../component/CategoryUpDel";
 export default function Category() {
@@ -11,23 +10,13 @@ export default function Category() {
   const [showModal, setShowModal] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [brands, setBrands] = useState([]);
 
-  // Lấy danh sách category và brands
+  // Lấy danh sách category
   const loadCategories = async () => {
     try {
-      const [categoryData, brandData] = await Promise.all([getCategory(), getBrand()]);
-      setBrands(brandData);
-      // Map tenBrand vào categories
-      const categoriesWithBrandName = categoryData.map((cat) => {
-        const brand = brandData.find((b) => b.maBrand === cat.maBrand);
-        return {
-          ...cat,
-          tenBrand: brand ? brand.tenBrand : "",
-        };
-      });
-      setCategory(categoriesWithBrandName);
-      setFilteredCategory(categoriesWithBrandName);
+      const categoryData = await getCategory();
+      setCategory(categoryData);
+      setFilteredCategory(categoryData);
     } catch (err) {
       setError(err.message);
     }
@@ -47,8 +36,7 @@ export default function Category() {
     const searchLower = keyword.toLowerCase().trim();
     const results = category.filter((item) =>
       item.maLoai.toLowerCase().includes(searchLower) ||
-      item.tenLoai.toLowerCase().includes(searchLower) ||
-      (item.tenBrand && item.tenBrand.toLowerCase().includes(searchLower))
+      item.tenLoai.toLowerCase().includes(searchLower)
     );
     setFilteredCategory(results);
   };
@@ -161,7 +149,6 @@ export default function Category() {
                   <th className="text-center">Mã Loại</th>
                   <th className="text-center">Tên Loại</th>
                   <th className="text-center">Hình Ảnh</th>
-                  <th className="text-center">Thương Hiệu</th>
                   <th className="text-center">Quản Lí</th>
                 </tr>
               </thead>

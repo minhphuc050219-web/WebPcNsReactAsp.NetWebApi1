@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import { getBrand } from "../api/brandAPI";
 import { BASE_URL } from "../api";
 
 export default function CategoryUpDel({ show, onClose, onSubmit, editingCategory = null }) {
   const [formData, setFormData] = useState(
     editingCategory
-      ? { maLoai: editingCategory.maLoai, tenLoai: editingCategory.tenLoai, maBrand: editingCategory.maBrand || "", loaiImages: null }
-      : { maLoai: "", tenLoai: "", maBrand: "", loaiImages: null }
+      ? { maLoai: editingCategory.maLoai, tenLoai: editingCategory.tenLoai, loaiImages: null }
+      : { maLoai: "", tenLoai: "", loaiImages: null }
   );
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [brands, setBrands] = useState([]);
 
   // Cập nhật formData và preview khi editingCategory thay đổi
   useEffect(() => {
@@ -18,7 +16,6 @@ export default function CategoryUpDel({ show, onClose, onSubmit, editingCategory
       setFormData({
         maLoai: editingCategory.maLoai,
         tenLoai: editingCategory.tenLoai,
-        maBrand: editingCategory.maBrand || "",
         loaiImages: null,
       });
       // Lấy preview ảnh từ backend URL
@@ -35,19 +32,11 @@ export default function CategoryUpDel({ show, onClose, onSubmit, editingCategory
       setFormData({
         maLoai: generateId(),
         tenLoai: "",
-        maBrand: "",
         loaiImages: null,
       });
       setImagePreview(null);
     }
   }, [show, editingCategory]);
-
-  // Load brands khi component mount
-  useEffect(() => {
-    getBrand()
-      .then(setBrands)
-      .catch((error) => console.error("Failed to load brands:", error));
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -83,7 +72,7 @@ export default function CategoryUpDel({ show, onClose, onSubmit, editingCategory
     setLoading(true);
     try {
       await onSubmit(formData);
-      setFormData({ maLoai: "", tenLoai: "", maBrand: "", loaiImages: null });
+      setFormData({ maLoai: "", tenLoai: "", loaiImages: null });
       setImagePreview(null);
       onClose();
     } catch (error) {
@@ -149,29 +138,6 @@ export default function CategoryUpDel({ show, onClose, onSubmit, editingCategory
                   required
                   disabled={loading}
                 />
-              </div>
-
-              {/* Thương Hiệu */}
-              <div className="mb-3">
-                <label htmlFor="maBrand" className="form-label">
-                  Thương Hiệu
-                </label>
-                <select
-                  className="form-control"
-                  id="maBrand"
-                  name="maBrand"
-                  value={formData.maBrand}
-                  onChange={handleInputChange}
-                  disabled={loading}
-                >
-                  <option value="">Chọn thương hiệu (tùy chọn)</option>
-                  {brands.map((brand) => (
-                    <option key={brand.maBrand} value={brand.maBrand}>
-                      {brand.tenBrand}
-                    </option>
-                  ))}
-                </select>
-                <small className="text-muted">Liên kết với thương hiệu (có thể để trống)</small>
               </div>
 
               {/* Hình Ảnh */}

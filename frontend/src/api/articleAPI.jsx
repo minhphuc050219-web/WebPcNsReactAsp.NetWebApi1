@@ -60,6 +60,39 @@ export async function updateArticle(maBV, articleData) {
   return await response.json();
 }
 
+export async function getArticleById(id) {
+  console.log(`Calling API: ${API_URL}/Article/id/${id}`);
+  try {
+    let response = await fetch(`${API_URL}/Article/id/${id}`);
+    console.log(`Response status: ${response.status}`);
+
+    // Fallback: Nếu endpoint không tồn tại, fetch tất cả rồi tìm
+    if (!response.ok && response.status === 404) {
+      console.log("Endpoint /Article/id/{id} không tồn tại, sử dụng fallback...");
+      const allArticles = await getArticle();
+      const article = allArticles.find(a => String(a.maBV) === String(id));
+      if (!article) {
+        throw new Error("Article not found");
+      }
+      console.log(`Article detail (from list):`, article);
+      return article;
+    }
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`API Error: ${response.status} - ${errorText}`);
+      throw new Error(`API Error ${response.status}: Article not found`);
+    }
+
+    const data = await response.json();
+    console.log(`Article detail:`, data);
+    return data;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    throw error;
+  }
+}
+
 export async function searchArticle(keyword) {
   const response = await fetch(`${API_URL}/Article/${encodeURIComponent(keyword)}`);
   

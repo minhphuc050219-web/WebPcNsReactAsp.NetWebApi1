@@ -9,6 +9,5 @@ public class CategoryCreateUpdateDto
 {
     public string? MaLoai { get; set; }
     public string? TenLoai { get; set; }
-    public string? MaBrand { get; set; }
     public IFormFile? LoaiImages { get; set; }
 }

@@ -11,9 +11,5 @@ public partial class category
 
     public string? LoaiImages { get; set; }
 
-    public string? MaBrand { get; set; }
-
-    public virtual brand? MaBrandNavigation { get; set; }
-
     public virtual ICollection<product> product { get; set; } = new List<product>();
 }

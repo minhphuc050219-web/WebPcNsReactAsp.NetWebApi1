@@ -11,7 +11,6 @@ public partial class brand
 
     public string? BrandImages { get; set; }
 
-    public virtual ICollection<category> category { get; set; } = new List<category>();
 
     public virtual ICollection<product> product { get; set; } = new List<product>();
 }

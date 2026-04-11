@@ -11,13 +11,18 @@ import ProtectedRoute from './component/ProtectedRoute'
 /*web*/
 import Home from './pages/Home'
 import SanPham from './pages/SanPham'
+import ProductDetail from './pages/ProductDetail'
+import CategoryProducts from './pages/CategoryProducts'
 import Login  from './pages/Login'
 import Register from './pages/Register'
 import ThuongHieu from './pages/ThuongHieu'
 import LoaiSP from './pages/LoaiSP'
 import LoaiBV from './pages/LoaiBV'
+import CategoryArticles from './pages/CategoryArticles'
 import BaiViet from './pages/BaiViet'
+import ArticleDetail from './pages/ArticleDetail'
 import GioHang from './pages/GioHang'
+import YeuThich from './pages/YeuThich'
 /*admin*/
 import Dashboard from './admin/Dashboard'
 import Brand from './admin/Brand'
@@ -41,10 +46,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/thuonghieu" element={<ThuongHieu/>} />
           <Route path="/loaisp" element={<LoaiSP/>} />
+          <Route path="/loaisp/:categoryId" element={<CategoryProducts/>} />
           <Route path="/sanpham" element={<SanPham />} />
+          <Route path="/sanpham/:id" element={<ProductDetail />} />
           <Route path="/loaibv" element={<LoaiBV />} />
+          <Route path="/loaibv/:categoryId" element={<CategoryArticles/>} />
+          <Route path="/baiviet/:id" element={<ArticleDetail />} />
           <Route path="/baiviet" element={<BaiViet />} />
+          <Route path="/baiviet/:id" element={<ArticleDetail />} />
           <Route path="/giohang" element={<GioHang />} />
+          <Route path="/yeuthich" element={<YeuThich />} />
         </Route>
 
         <Route path="/login" element={<Login/>} />

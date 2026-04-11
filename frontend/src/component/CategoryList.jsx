@@ -27,7 +27,6 @@ export default function CategoryList({ categories, onEdit, onDelete }) {
               />
             )}
           </td>
-          <td className="text-center">{item.tenBrand || item.maBrand}</td>
           <td className="text-center">
             <button
               className="btn btn-danger btn-sm me-2"

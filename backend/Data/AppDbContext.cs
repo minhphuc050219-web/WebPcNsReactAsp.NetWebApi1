@@ -138,21 +138,13 @@ public partial class AppDbContext : DbContext
         {
             entity.HasKey(e => e.MaLoai).HasName("PRIMARY");
 
-            entity.HasIndex(e => e.MaBrand, "fk_category_brand");
-
             entity.Property(e => e.MaLoai)
                 .HasMaxLength(10)
                 .IsFixedLength();
             entity.Property(e => e.LoaiImages).HasMaxLength(255);
-            entity.Property(e => e.MaBrand)
-                .HasMaxLength(10)
-                .IsFixedLength();
+
             entity.Property(e => e.TenLoai).HasMaxLength(100);
 
-            entity.HasOne(d => d.MaBrandNavigation).WithMany(p => p.category)
-                .HasForeignKey(d => d.MaBrand)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("fk_category_brand");
         });
 
         modelBuilder.Entity<departments>(entity =>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CDPmzra6oIoGNymlA7KHUAklEwqhiLs6QfaSOcGapXM=",
+  "Hash": "2/HLE5+Sxc8Qk4LR8p3OoF3lBcapmqMShZCaB0yBs6E=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesAccount\\1c10a46e-8797-47a8-9f08-be7c6b758314_639113378635582071.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "public/imagesAccount/1c10a46e-8797-47a8-9f08-be7c6b758314_639113378635582071.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\public\\imagesAccount\\1c10a46e-8797-47a8-9f08-be7c6b758314_639113378635582071.jpg"
+    },
     {
       "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesAccount\\246c1f64-821a-4122-a291-abb19b8f4141_639110770530660263.jpg",
       "SourceId": "backend",
@@ -91,25 +110,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\public\\imagesAccount\\d54dcaec-eecf-40af-8dd5-f657fb61c17f_639110771562171211.jpg"
-    },
-    {
-      "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesAccount\\e2c8c799-fc51-4319-a846-0cc0f7294cf3_639111173392662590.jpg",
-      "SourceId": "backend",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\",
-      "BasePath": "_content/backend",
-      "RelativePath": "public/imagesAccount/e2c8c799-fc51-4319-a846-0cc0f7294cf3_639111173392662590.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\public\\imagesAccount\\e2c8c799-fc51-4319-a846-0cc0f7294cf3_639111173392662590.jpg"
     },
     {
       "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesAccount\\eeab18a8-acbd-4674-8ca1-99bdfbf45b04_639110766443234204.jpg",
@@ -1290,25 +1290,6 @@
       "OriginalItemSpec": "wwwroot\\public\\imagesBrand\\msi.jpg"
     },
     {
-      "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\9e8484df-9653-496d-8356-944d239114a4_639096509916136136.jpg",
-      "SourceId": "backend",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\",
-      "BasePath": "_content/backend",
-      "RelativePath": "public/imagesCategory/9e8484df-9653-496d-8356-944d239114a4_639096509916136136.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\public\\imagesCategory\\9e8484df-9653-496d-8356-944d239114a4_639096509916136136.jpg"
-    },
-    {
       "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\cpu.jpg",
       "SourceId": "backend",
       "SourceType": "Discovered",
@@ -1326,6 +1307,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\public\\imagesCategory\\cpu.jpg"
+    },
+    {
+      "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\eec9d35e-5c2a-4161-bea0-cda5e327a2ae_639114774793883280.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "public/imagesCategory/eec9d35e-5c2a-4161-bea0-cda5e327a2ae_639114774793883280.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\public\\imagesCategory\\eec9d35e-5c2a-4161-bea0-cda5e327a2ae_639114774793883280.jpg"
     },
     {
       "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesCategory\\gpu.jpg",
@@ -1499,25 +1499,6 @@
       "OriginalItemSpec": "wwwroot\\public\\imagesProduct\\ssd512.jpg"
     },
     {
-      "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\0ae75989-08b3-4151-b90b-c535104df4ca_639111173392712909.jpg",
-      "SourceId": "backend",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\",
-      "BasePath": "_content/backend",
-      "RelativePath": "public/imagesStaff/0ae75989-08b3-4151-b90b-c535104df4ca_639111173392712909.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\public\\imagesStaff\\0ae75989-08b3-4151-b90b-c535104df4ca_639111173392712909.jpg"
-    },
-    {
       "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\16bb8195-2f16-4fc8-9300-4e4d6cc26f40_639110766659936206.jpg",
       "SourceId": "backend",
       "SourceType": "Discovered",
@@ -1573,6 +1554,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\public\\imagesStaff\\7641e5cb-edc2-477d-9cb5-d6b85864a150_639110769635425654.jpg"
+    },
+    {
+      "Identity": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\public\\imagesStaff\\e6312782-e3fc-445a-ad75-d85e3b800765_639113378635461062.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "public/imagesStaff/e6312782-e3fc-445a-ad75-d85e3b800765_639113378635461062.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\public\\imagesStaff\\e6312782-e3fc-445a-ad75-d85e3b800765_639113378635461062.jpg"
     }
   ]
 }

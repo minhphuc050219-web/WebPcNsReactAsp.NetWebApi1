@@ -83,8 +83,7 @@ namespace backend.Controllers
                 var category = new category
                 {
                     MaLoai = maLoai,
-                    TenLoai = dto.TenLoai.Trim(),
-                    MaBrand = dto.MaBrand?.Trim()
+                    TenLoai = dto.TenLoai.Trim()
                 };
 
                 // Xử lý upload hình ảnh
@@ -123,7 +122,6 @@ namespace backend.Controllers
                 }
 
                 category.TenLoai = dto.TenLoai.Trim();
-                category.MaBrand = dto.MaBrand?.Trim();
 
                 // Xử lý update hình ảnh mới
                 if (dto.LoaiImages != null && dto.LoaiImages.Length > 0)
