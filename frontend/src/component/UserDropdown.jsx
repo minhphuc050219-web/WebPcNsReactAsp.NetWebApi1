@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BASE_URL } from "../api";
 
@@ -11,7 +12,12 @@ import { BASE_URL } from "../api";
  *   extraItems     - array[{ label, icon, onClick }]: menu item thêm (vd: Giỏ hàng ở web layout)
  *   light          - boolean: dùng text trắng cho nền tối (admin header)
  */
-export default function UserDropdown({ onLogout, onOpenSettings, extraItems = [], light = false }) {
+export default function UserDropdown({
+  onLogout,
+  onOpenSettings,
+  extraItems = [],
+  light = false,
+}) {
   const { auth, isAdminRole } = useAuth();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -43,7 +49,8 @@ export default function UserDropdown({ onLogout, onOpenSettings, extraItems = []
         <img
           src={avatarSrc}
           alt="avatar"
-          width="36" height="36"
+          width="36"
+          height="36"
           className="rounded-circle border"
           style={{ objectFit: "cover" }}
         />
@@ -65,21 +72,34 @@ export default function UserDropdown({ onLogout, onOpenSettings, extraItems = []
             <img
               src={avatarSrc}
               alt="avatar"
-              width="40" height="40"
+              width="40"
+              height="40"
               className="rounded-circle border"
               style={{ objectFit: "cover" }}
             />
             <div className="lh-1">
-              <div className="fw-semibold small text-success">{auth?.username}</div>
-              <div className="text-muted" style={{ fontSize: "0.72rem" }}>{auth?.email}</div>
-              <span className="badge bg-success mt-1" style={{ fontSize: "0.65rem" }}>{auth?.role}</span>
+              <div className="fw-semibold small text-success">
+                {auth?.username}
+              </div>
+              <div className="text-muted" style={{ fontSize: "0.72rem" }}>
+                {auth?.email}
+              </div>
+              <span
+                className="badge bg-success mt-1"
+                style={{ fontSize: "0.65rem" }}
+              >
+                {auth?.role}
+              </span>
             </div>
           </div>
           {/* trang admin vào 👤 - chỉ hiển thị với admin/staff/manager/leader */}
           {isAdminRole && (
             <button
               className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 text-secondary"
-              onClick={() => { setOpen(false); window.location.href = "/admin"; }}
+              onClick={() => {
+                setOpen(false);
+                window.location.href = "/admin";
+              }}
             >
               🧑‍💻 <span>Trang Admin</span>
             </button>
@@ -88,19 +108,40 @@ export default function UserDropdown({ onLogout, onOpenSettings, extraItems = []
           {/* Cài đặt tài khoản */}
           {/* UserDropdown (nhận prop)
   └─ onOpenSettings={() => setShowProfile(true)}  ← truyền từ AdminLayout  */}
-          <button 
+          <button
             className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 text-warning"
-            onClick={() => { setOpen(false); onOpenSettings(); }}
+            onClick={() => {
+              setOpen(false);
+              onOpenSettings();
+            }}
           >
             ⚙️ <span>Setting</span>
           </button>
+
+          <Link
+            to="#"
+            className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 text-primary"
+          >
+            <i className="bi bi-list-check"></i>
+            <span>Đơn hàng của tôi</span>
+          </Link>
+          <Link
+            to="/yeuthich"
+            className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 text-danger"
+          >
+            <i className="bi bi-heart-fill"></i>
+            <span>Yêu thích</span>
+          </Link>
 
           {/* Extra items (vd: Giỏ hàng) */}
           {extraItems.map((item, i) => (
             <button
               key={i}
               className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 text-info"
-              onClick={() => { setOpen(false); item.onClick(); }}
+              onClick={() => {
+                setOpen(false);
+                item.onClick();
+              }}
             >
               {item.icon} <span>{item.label}</span>
             </button>
@@ -111,7 +152,10 @@ export default function UserDropdown({ onLogout, onOpenSettings, extraItems = []
           {/* Đăng xuất */}
           <button
             className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 text-danger"
-            onClick={() => { setOpen(false); onLogout(); }}
+            onClick={() => {
+              setOpen(false);
+              onLogout();
+            }}
           >
             🚪 <span>Đăng xuất</span>
           </button>

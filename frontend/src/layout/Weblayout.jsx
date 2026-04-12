@@ -123,7 +123,9 @@ export default function MainLayout() {
           <div className="row align-items-center">
             {/* LOGO */}
             <div className="col-6 col-md-3">
+               <Link className="nav-link fw-bold" to="/">
               <h5 className="fw-bold m-0">NHÓM 3 PC SHOP</h5>
+              </Link>
             </div>
 
             {/* SEARCH */}
@@ -542,31 +544,39 @@ export default function MainLayout() {
           </div>
 
           {/* SERVICES */}
-          <div className="row text-center mb-4">
-            <div className="col-6 col-md-3 mb-3">
-              <i className="bi bi-truck fs-3 text-primary"></i>
-              <p className="fw-bold mb-0">Giao hàng</p>
-              <small>Thanh toán tại nhà</small>
-            </div>
-
-            <div className="col-6 col-md-3 mb-3">
-              <i className="bi bi-arrow-repeat fs-3 text-primary"></i>
-              <p className="fw-bold mb-0">Đổi trả</p>
-              <small>1 đổi 1 trong 7 ngày</small>
-            </div>
-
-            <div className="col-6 col-md-3 mb-3">
-              <i className="bi bi-credit-card fs-3 text-primary"></i>
-              <p className="fw-bold mb-0">Thanh toán</p>
-              <small>Tiền mặt / chuyển khoản</small>
-            </div>
-
-            <div className="col-6 col-md-3 mb-3">
-              <i className="bi bi-headset fs-3 text-primary"></i>
-              <p className="fw-bold mb-0">Hỗ trợ</p>
-              <small>24/7</small>
+          {/* FEATURED BENEFITS (GIỮ NGUYÊN) */}
+        <div className="row mb-5 text-center">
+          <div className="col-md-3 mb-3">
+            <div className="p-3">
+              <i className="bi bi-truck fs-2 text-primary mb-2 d-block"></i>
+              <h6 className="fw-bold">Giao hàng nhanh</h6>
+              <small className="text-muted">Toàn quốc trong 3-5 ngày</small>
             </div>
           </div>
+          <div className="col-md-3 mb-3">
+            <div className="p-3">
+              <i className="bi bi-arrow-repeat fs-2 text-success mb-2 d-block"></i>
+              <h6 className="fw-bold">Đổi trả 7 ngày</h6>
+              <small className="text-muted">Miễn phí, không yêu cầu</small>
+            </div>
+          </div>
+          <div className="col-md-3 mb-3">
+            <div className="p-3">
+              <i className="bi bi-credit-card fs-2 text-warning mb-2 d-block"></i>
+              <h6 className="fw-bold">Thanh toán linh hoạt</h6>
+              <small className="text-muted">
+                Tiền mặt, chuyển khoản, trả góp
+              </small>
+            </div>
+          </div>
+          <div className="col-md-3 mb-3">
+            <div className="p-3">
+              <i className="bi bi-headset fs-2 text-danger mb-2 d-block"></i>
+              <h6 className="fw-bold">Hỗ trợ 24/7</h6>
+              <small className="text-muted">Chat, email, điện thoại</small>
+            </div>
+          </div>
+        </div>
           <hr />
           {/* STORE LIST */}
           <div className="row text-center mb-4">
