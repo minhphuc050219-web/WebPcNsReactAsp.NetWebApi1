@@ -31,6 +31,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<departments> departments { get; set; }
 
+    public virtual DbSet<leaves> leaves { get; set; }
+
     public virtual DbSet<product> product { get; set; }
 
     public virtual DbSet<register> register { get; set; }
@@ -156,6 +158,28 @@ public partial class AppDbContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.SoLuongNV).HasDefaultValueSql("'0'");
             entity.Property(e => e.TenPhongBan).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<leaves>(entity =>
+        {
+            entity.HasKey(e => e.MaLV).HasName("PRIMARY");
+
+            entity.HasIndex(e => e.MaNV, "fk_leaves_staff");
+
+            entity.Property(e => e.MaNV)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.ImagesLV).HasMaxLength(255);
+            entity.Property(e => e.LyDo).HasColumnType("text");
+            entity.Property(e => e.TrangThai)
+                .HasMaxLength(50)
+                .HasDefaultValue("Chờ duyệt");
+            entity.Property(e => e.TypeLV).HasMaxLength(100);
+
+            entity.HasOne(d => d.MaNVNavigation).WithMany(p => p.leaves)
+                .HasForeignKey(d => d.MaNV)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_leaves_staff");
         });
 
         modelBuilder.Entity<product>(entity =>

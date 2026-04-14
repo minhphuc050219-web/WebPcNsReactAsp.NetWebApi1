@@ -113,7 +113,6 @@ D:\testReactAsp.NetWebApi\backend\bin\Debug\net8.0\Microsoft.IdentityModel.Token
 D:\testReactAsp.NetWebApi\backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\appsettings.Development.json
 D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\appsettings.json
-D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.exe
 D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.deps.json
 D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.runtimeconfig.json
 D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.dll
@@ -212,11 +211,6 @@ D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.MvcApplicationPart
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.MvcApplicationPartsAssemblyInfo.cache
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets.build.json
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets.development.json
-D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets\msbuild.backend.Microsoft.AspNetCore.StaticWebAssets.props
-D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets\msbuild.build.backend.props
-D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.backend.props
-D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.backend.props
-D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets.pack.json
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\scopedcss\bundle\backend.styles.css
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.csproj.Up2Date
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.dll
@@ -226,3 +220,12 @@ D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.genruntimeconfig.c
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\ref\backend.dll
 D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\backend.sourcelink.json
 D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.staticwebassets.runtime.json
+D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.exe
+D:\WebPcNsReactAsp.NetWebApi\backend\bin\Debug\net8.0\backend.staticwebassets.endpoints.json
+D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\WebPcNsReactAsp.NetWebApi\backend\obj\Debug\net8.0\swae.build.ex.cache

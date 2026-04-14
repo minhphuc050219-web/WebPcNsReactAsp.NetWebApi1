@@ -87,6 +87,14 @@ export default function AdminLayout() {
                 <span className="menu-icon">$</span>
                 <span className="menu-text">Salary</span>
               </Link>
+              <Link className={`menu ${isActive("/admin/leaves") ? "active-menu" : ""}`} to="/admin/leaves">
+                <span className="menu-icon">✈</span>
+                <span className="menu-text">Leaves</span>
+              </Link>
+              <Link className={`menu ${isActive("/admin/leaves-staff") ? "active-menu" : ""}`} to="/admin/leaves-staff">
+                <span className="menu-icon">☑</span>
+                <span className="menu-text">My Leaves</span>
+              </Link>
               <Link className={`menu ${isActive("/admin/timekp") ? "active-menu" : ""}`} to="/admin/timekp">
                 <span className="menu-icon">◷</span>
                 <span className="menu-text">Cham Cong</span>

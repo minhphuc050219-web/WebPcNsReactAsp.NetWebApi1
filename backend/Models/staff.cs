@@ -43,6 +43,8 @@ public partial class staff
 
     public virtual ICollection<cartdetail> cartdetail { get; set; } = new List<cartdetail>();
 
+    public virtual ICollection<leaves> leaves { get; set; } = new List<leaves>();
+
     public virtual ICollection<salary> salary { get; set; } = new List<salary>();
 
     public virtual ICollection<timekeeping> timekeeping { get; set; } = new List<timekeeping>();

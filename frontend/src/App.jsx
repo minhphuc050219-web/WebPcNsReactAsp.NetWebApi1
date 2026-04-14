@@ -35,6 +35,8 @@ import Department from './admin/Department'
 import Account from './admin/Account'
 import ActicleCategory from './admin/ArticleCategory'
 import Article from './admin/Article'
+import LeavesManager from './admin/LeavesManager'
+import LeavesStaff from './admin/LeavesStaff'
 
 
 function App() {
@@ -78,6 +80,8 @@ function App() {
           <Route path="/admin/product" element={<Product />} />
           <Route path="/admin/staff" element={<Staff />} />
           <Route path="/admin/salary" element={<Salary />} />
+          <Route path="/admin/leaves" element={<LeavesManager />} />
+          <Route path="/admin/leaves-staff" element={<LeavesStaff />} />
           <Route path="/admin/timekp" element={<Timekeeping />} />
           <Route path="/admin/phongban" element={<Department />} />
           <Route path="/admin/account" element={<Account />} />
