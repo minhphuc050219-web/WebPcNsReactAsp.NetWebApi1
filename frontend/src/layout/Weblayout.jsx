@@ -123,8 +123,8 @@ export default function MainLayout() {
           <div className="row align-items-center">
             {/* LOGO */}
             <div className="col-6 col-md-3">
-               <Link className="nav-link fw-bold" to="/">
-              <h5 className="fw-bold m-0">NHÓM 3 PC SHOP</h5>
+              <Link className="nav-link fw-bold" to="/">
+                <h5 className="fw-bold m-0">NHÓM 3 PC SHOP</h5>
               </Link>
             </div>
 
@@ -330,120 +330,43 @@ export default function MainLayout() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="menu">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav mx-auto gap-3">
               <li className="nav-item">
-                <Link className="nav-link fw-bold" to="/">
+                <Link className="nav-link fw-bold text-uppercase" to="/">
                   <i className="bi bi-house me-1"></i>Trang chủ
                 </Link>
               </li>
+              {/* ✅ ĐÃ DẸP DROPDOWN - BẤM LÀ BAY THẲNG TỚI TRANG */}
               <li className="nav-item">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-link nav-link dropdown-toggle text-decoration-none"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i className="bi bi-building me-1"></i>Thương hiệu
-                  </button>
-                  <ul className="dropdown-menu">
-                    {brands.length === 0 ? (
-                      <li>
-                        <span className="dropdown-item-text text-muted">
-                          Không có thương hiệu
-                        </span>
-                      </li>
-                    ) : (
-                      brands.map((brand) => (
-                        <li key={brand.maBrand ?? brand.tenBrand}>
-                          <Link
-                            className="dropdown-item "
-                            to={`/thuonghieu?brand=${encodeURIComponent(brand.maBrand ?? "")}`}
-                          >
-                            {brand.tenBrand}
-                          </Link>
-                        </li>
-                      ))
-                    )}
-                  </ul>
-                </div>
+                <Link
+                  className="nav-link fw-bold text-uppercase"
+                  to="/thuonghieu"
+                >
+                  <i className="bi bi-building me-1"></i>Thương hiệu
+                </Link>
               </li>
               <li className="nav-item">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-link nav-link dropdown-toggle text-decoration-none"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i className="bi bi-box-seam me-1"></i>Loại sản phẩm
-                  </button>
-                  <ul className="dropdown-menu">
-                    {categories.length === 0 ? (
-                      <li>
-                        <span className="dropdown-item-text text-muted">
-                          Không có loại sản phẩm
-                        </span>
-                      </li>
-                    ) : (
-                      categories.map((category) => (
-                        <li key={category.maLoai ?? category.tenLoai}>
-                          <Link
-                            className="dropdown-item"
-                            to={`/loaisp?maloai=${encodeURIComponent(category.maLoai ?? "")}`}
-                          >
-                            {category.tenLoai}
-                          </Link>
-                        </li>
-                      ))
-                    )}
-                  </ul>
-                </div>
+                <Link className="nav-link fw-bold text-uppercase" to="/loaisp">
+                  <i className="bi bi-box-seam me-1"></i>Loại sản phẩm
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link fw-bold" to="/sanpham">
+                <Link className="nav-link fw-bold text-uppercase" to="/sanpham">
                   <i className="bi bi-box2 me-1"></i>Sản phẩm
                 </Link>
               </li>
               <li className="nav-item">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-link nav-link dropdown-toggle text-decoration-none"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i className="bi bi-journal-text me-1"></i>Loại bài viết
-                  </button>
-                  <ul className="dropdown-menu">
-                    {articleCategories.length === 0 ? (
-                      <li>
-                        <span className="dropdown-item-text text-muted">
-                          Không có loại bài viết
-                        </span>
-                      </li>
-                    ) : (
-                      articleCategories.map((item) => (
-                        <li key={item.maLoaiBV ?? item.tenLoaiBV}>
-                          <Link
-                            className="dropdown-item"
-                            to={`/loaibv?maloaibv=${encodeURIComponent(item.maLoaiBV ?? "")}`}
-                          >
-                            {item.tenLoaiBV}
-                          </Link>
-                        </li>
-                      ))
-                    )}
-                  </ul>
-                </div>
+                <Link className="nav-link fw-bold text-uppercase" to="/loaibv">
+                  <i className="bi bi-journal-text me-1"></i>Loại bài viết
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link fw-bold" to="/baiviet">
+                <Link className="nav-link fw-bold text-uppercase" to="/baiviet">
                   <i className="bi bi-newspaper me-1"></i>Bài viết
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link fw-bold" to="/giohang">
+                <Link className="nav-link fw-bold text-uppercase" to="/giohang">
                   <i className="bi bi-cart me-1"></i>Giỏ hàng
                 </Link>
               </li>
@@ -460,26 +383,28 @@ export default function MainLayout() {
         .search-item-hover:hover { background-color: #f1f3f5; cursor: pointer; }
       `}</style>
       {/* BANNER TRÁI */}
-      <div className="position-fixed top-50 start-0 translate-middle-y d-none d-xl-block ms-2">
+      <div className="position-fixed top-50 start-0 translate-middle-y d-none d-xl-block ms-2" style={{ zIndex: 1000 }}>
         <img
           src="/images/panelPC3.jpg"
           width="130"
           className="rounded shadow"
+          alt="Banner Trái"
         />
       </div>
 
       {/* BANNER PHẢI */}
-      <div className="position-fixed top-50 end-0 translate-middle-y d-none d-xl-block me-2">
+      <div className="position-fixed top-50 end-0 translate-middle-y d-none d-xl-block me-2" style={{ zIndex: 1000 }}>
         <img
           src="/images/panelPC4.jpg"
           width="130"
           className="rounded shadow"
+          alt="Banner Phải"
         />
       </div>
 
       {/* CONTENT */}
 
-      <div className="container mt-4">
+      <div className="container mt-4" style={{ maxWidth: "1150px" }}>
         <Outlet />
       </div>
 
@@ -487,9 +412,10 @@ export default function MainLayout() {
       <ProfileModal show={showProfile} onClose={() => setShowProfile(false)} />
 
       <hr />
+      {/* FOOTER */}
       <footer className="bg-light pt-4 mt-5">
-        <div className="container">
-          {/* VIDEO */}
+        {/* ✅ ĐÃ THÊM SỰ ĐỒNG BỘ MAX-WIDTH CHO FOOTER TẠI ĐÂY */}
+        <div className="container" style={{ maxWidth: "1150px" }}>
           <div className="text-center mb-4">
             <div className="ratio ratio-16x9">
               <iframe
@@ -500,10 +426,8 @@ export default function MainLayout() {
             </div>
           </div>
 
-          {/* FAQ */}
           <div className="text-center mb-4">
             <h4>Câu hỏi thường gặp</h4>
-
             <div className="accordion" id="faq">
               <div className="accordion-item">
                 <h2 className="accordion-header">
@@ -515,7 +439,6 @@ export default function MainLayout() {
                     PC Gaming là gì?
                   </button>
                 </h2>
-
                 <div id="q1" className="accordion-collapse collapse show">
                   <div className="accordion-body">
                     PC tối ưu cho chơi game và đồ họa.
@@ -533,7 +456,6 @@ export default function MainLayout() {
                     Bảo hành bao lâu?
                   </button>
                 </h2>
-
                 <div id="q2" className="accordion-collapse collapse">
                   <div className="accordion-body">
                     Bảo hành từ 12 - 36 tháng.
@@ -543,8 +465,6 @@ export default function MainLayout() {
             </div>
           </div>
 
-          {/* SERVICES */}
-          {/* FEATURED BENEFITS (GIỮ NGUYÊN) */}
         <div className="row mb-5 text-center">
           <div className="col-md-3 mb-3">
             <div className="p-3">
@@ -578,36 +498,27 @@ export default function MainLayout() {
           </div>
         </div>
           <hr />
-          {/* STORE LIST */}
+          
           <div className="row text-center mb-4">
             <div className="col-md-4 mb-3">
               <h6 className="fw-bold">Chi nhánh Hà Nội</h6>
-
               <p className="mb-1">4/51 Nguyễn Văn Huyên, Cầu Giấy</p>
-
               <p className="mb-1">83 Thái Hà, Đống Đa</p>
-
               <p className="mb-1">Số 6 Trần Đại Nghĩa</p>
             </div>
-
             <div className="col-md-4 mb-3">
               <h6 className="fw-bold">Chi nhánh Hồ Chí Minh</h6>
-
               <p className="mb-1">602 Lê Hồng Phong, Q10</p>
-
               <p className="mb-1">28 Nguyễn Tri Phương</p>
             </div>
-
             <div className="col-md-4 mb-3">
               <h6 className="fw-bold">Chi nhánh Đà Nẵng</h6>
-
               <p className="mb-1">81 Hàm Nghi</p>
-
               <p className="mb-1">215 Nguyễn Văn Linh</p>
             </div>
           </div>
           <hr />
-          {/* INFO */}
+          
           <div className="row">
             <div className="col-6 col-md-3 mb-3">
               <h6 className="fw-bold">Về chúng tôi</h6>
@@ -618,7 +529,6 @@ export default function MainLayout() {
                 <li>Liên hệ</li>
               </ul>
             </div>
-
             <div className="col-6 col-md-3 mb-3">
               <h6 className="fw-bold">Chính sách</h6>
               <ul className="list-unstyled">
@@ -628,7 +538,6 @@ export default function MainLayout() {
                 <li>Bảo mật</li>
               </ul>
             </div>
-
             <div className="col-6 col-md-3 mb-3">
               <h6 className="fw-bold">Hỗ trợ</h6>
               <ul className="list-unstyled">
@@ -638,28 +547,22 @@ export default function MainLayout() {
                 <li>Hướng dẫn</li>
               </ul>
             </div>
-          </div>
-          {/* ICON */}
-
-          <div className="col-6 col-md-3 mb-3">
-            <h6 className="fw-bold">Kết nối với chúng tôi</h6>
-            <div className="d-flex gap-2">
-              <button className="btn btn-primary btn-sm">
-                <i className="bi bi-facebook"></i>
-              </button>
-
-              <button className="btn btn-danger btn-sm">
-                <i className="bi bi-youtube"></i>
-              </button>
-
-              <button className="btn btn-dark btn-sm">
-                <i className="bi bi-tiktok"></i>
-              </button>
+            <div className="col-6 col-md-3 mb-3">
+              <h6 className="fw-bold">Kết nối với chúng tôi</h6>
+              <div className="d-flex gap-2">
+                <button className="btn btn-primary btn-sm">
+                  <i className="bi bi-facebook"></i>
+                </button>
+                <button className="btn btn-danger btn-sm">
+                  <i className="bi bi-youtube"></i>
+                </button>
+                <button className="btn btn-dark btn-sm">
+                  <i className="bi bi-tiktok"></i>
+                </button>
+              </div>
             </div>
           </div>
           <hr />
-
-          {/* !-- COPYRIGHT -- */}
           <div className="text-center pb-3">
             <p className="mb-0">© 2026 PHUC TRUONG PC Gaming Store</p>
           </div>

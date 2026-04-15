@@ -21,6 +21,10 @@ export default function AdminLayout() {
     return pathname.startsWith(path);
   };
 
+  // Kiểm tra xem tài khoản hiện tại có role là "staff" hay không.
+  // Nếu là staff, ta sẽ ẩn một số liên kết quản lý nhân sự trong sidebar.
+  const isStaff = auth?.role?.toLowerCase() === "staff";
+
   const handleLogout = () => {
     if (!window.confirm("Bạn có chắc muốn đăng xuất không?")) return;
     logout();        // xóa token khỏi localStorage và reset context
@@ -72,42 +76,51 @@ export default function AdminLayout() {
               </Link>
             </p>
 
+            {/* Nếu `isStaff` = true thì ẩn các liên kết quản lý nhân sự (Department, Staff, Salary, Leaves, My Leaves).
+                Lưu ý: Đây chỉ ẩn UI; cần có route-guard/backend kiểm tra quyền để bảo mật thực sự. */}
             <p className="menu-title">
               {" "}
               MANAGEMENT STAFFS
-              <Link className={`menu ${isActive("/admin/phongban") ? "active-menu" : ""}`} to="/admin/phongban">
-                <span className="menu-icon">⌘</span>
-                <span className="menu-text">Department</span>
-              </Link>
-              <Link className={`menu ${isActive("/admin/staff") ? "active-menu" : ""}`} to="/admin/staff">
-                <span className="menu-icon">⚑</span>
-                <span className="menu-text">Staff</span>
-              </Link>
-              <Link className={`menu ${isActive("/admin/salary") ? "active-menu" : ""}`} to="/admin/salary">
-                <span className="menu-icon">$</span>
-                <span className="menu-text">Salary</span>
-              </Link>
-              <Link className={`menu ${isActive("/admin/leaves") ? "active-menu" : ""}`} to="/admin/leaves">
-                <span className="menu-icon">✈</span>
-                <span className="menu-text">Leaves</span>
-              </Link>
+              {!isStaff && (
+                <>
+                  <Link className={`menu ${isActive("/admin/phongban") ? "active-menu" : ""}`} to="/admin/phongban">
+                    <span className="menu-icon">⌘</span>
+                    <span className="menu-text">Department</span>
+                  </Link>
+                  <Link className={`menu ${isActive("/admin/staff") ? "active-menu" : ""}`} to="/admin/staff">
+                    <span className="menu-icon">⚑</span>
+                    <span className="menu-text">Staff</span>
+                  </Link>
+                  <Link className={`menu ${isActive("/admin/salary") ? "active-menu" : ""}`} to="/admin/salary">
+                    <span className="menu-icon">$</span>
+                    <span className="menu-text">Salary</span>
+                  </Link>
+                  <Link className={`menu ${isActive("/admin/leaves") ? "active-menu" : ""}`} to="/admin/leaves">
+                    <span className="menu-icon">✈</span>
+                    <span className="menu-text">Leaves</span>
+                  </Link>
+                </>
+              )}
               <Link className={`menu ${isActive("/admin/leaves-staff") ? "active-menu" : ""}`} to="/admin/leaves-staff">
-                <span className="menu-icon">☑</span>
-                <span className="menu-text">My Leaves</span>
-              </Link>
+                    <span className="menu-icon">☑</span>
+                    <span className="menu-text">My Leaves</span>
+                  </Link>
               <Link className={`menu ${isActive("/admin/timekp") ? "active-menu" : ""}`} to="/admin/timekp">
                 <span className="menu-icon">◷</span>
                 <span className="menu-text">Cham Cong</span>
               </Link>
             </p>
 
+            {/* Ẩn liên kết Account cho role = staff. (Chỉ ảnh hưởng UI) */}
             <p className="menu-title">
               {" "}
               MANAGEMENT ACCOUNT
-              <Link className={`menu ${isActive("/admin/account") ? "active-menu" : ""}`} to="/admin/account">
-                <span className="menu-icon">⚙</span>
-                <span className="menu-text">Account</span>
-              </Link>
+              {!isStaff && (
+                <Link className={`menu ${isActive("/admin/account") ? "active-menu" : ""}`} to="/admin/account">
+                  <span className="menu-icon">⚙</span>
+                  <span className="menu-text">Account</span>
+                </Link>
+              )}
             </p>
 
             <p className="menu-title">

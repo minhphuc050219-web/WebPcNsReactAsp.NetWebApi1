@@ -37,6 +37,9 @@ import ActicleCategory from './admin/ArticleCategory'
 import Article from './admin/Article'
 import LeavesManager from './admin/LeavesManager'
 import LeavesStaff from './admin/LeavesStaff'
+import KetQuaThanhToan from './pages/KetQuaThanhToan'
+import OrderHistory from './pages/OrderHistory'
+import OrderDetail from './pages/OrderDetail' // Tạo sau
 
 
 function App() {
@@ -58,6 +61,9 @@ function App() {
           <Route path="/baiviet/:id" element={<ArticleDetail />} />
           <Route path="/giohang" element={<GioHang />} />
           <Route path="/yeuthich" element={<YeuThich />} />
+          <Route path="/orders" element={<OrderHistory />} />
+          <Route path="/orders/:id" element={<OrderDetail />} />
+          <Route path="/vnpay-return" element={<KetQuaThanhToan />} />
         </Route>
 
         <Route path="/login" element={<Login/>} />
