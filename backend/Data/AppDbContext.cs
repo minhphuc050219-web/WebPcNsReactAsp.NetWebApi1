@@ -137,6 +137,7 @@ public partial class AppDbContext : DbContext
                 .HasForeignKey(d => d.MaSanPham)
                 .HasConstraintName("fk_cartdetail_product");
         });
+  
 
         modelBuilder.Entity<category>(entity =>
         {

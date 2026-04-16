@@ -22,7 +22,3 @@ public decimal DonGia { get; set; }
 
     }
 }
-
-
-
-
