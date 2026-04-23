@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../api";
 import axios from "axios";
+import { useAuth } from '../context/AuthContext';
 
 export default function GioHang() {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+
   const fetchCartFromDB = async () => {
+    if (!auth?.id) {
+      alert("Vui lòng đăng nhập để xem giỏ hàng!");
+      navigate('/login');
+      return;
+    }
+
     try {
       setLoading(true);
-      // Gọi API lấy giỏ hàng khách ID = 1
-      const response = await axios.get("http://localhost:5226/api/Cart/get-cart/1");
+      // Gọi API lấy giỏ hàng của user hiện tại
+      const response = await axios.get(`${BASE_URL}/api/Cart/get-cart/${auth.id}`);
       
       console.log("Dữ liệu nhận được:", response.data);
       
@@ -40,15 +50,17 @@ export default function GioHang() {
     return cartItems.reduce((sum, item) => sum + (Number(item.donGia) * Number(item.soLuong)), 0);
   };
 
-  const removeItem = async (maSanPham) => {
-    if (confirm("Xóa sản phẩm này khỏi giỏ hàng?")) {
-      try {
-        // API cần maCartDetail, frontend chưa có → dùng POST body với maSanPham để backend tìm
-        await axios.post(`http://localhost:5226/api/Cart/remove-by-product`, { maSanPham });
-        fetchCartFromDB(); // Refresh
-      } catch (error) {
-        alert("Lỗi xóa!");
-      }
+  const updateQuantity = async (maSanPham, newQuantity) => {
+    if (newQuantity < 1) return;
+    try {
+      await axios.post(`${BASE_URL}/api/Cart/update-quantity`, { 
+        maSanPham, 
+        MaKhachHang: auth.id,
+        soLuong: newQuantity
+      });
+      fetchCartFromDB(); // Refresh
+    } catch (error) {
+      alert("Lỗi cập nhật số lượng!");
     }
   };
 
@@ -59,9 +71,10 @@ export default function GioHang() {
     try {
       const orderData = {
         Amount: calculateTotal(),
-        OrderInfo: "Thanh toan don hang PC SHOP"
+        OrderInfo: "Thanh toan don hang PC SHOP",
+        MaKhachHang: auth.id  // Thêm ID khách hàng để backend tạo order
       };
-      const res = await axios.post("http://localhost:5226/api/Payment/create-payment-url", orderData);
+      const res = await axios.post(`${BASE_URL}/api/Payment/create-payment-url`, orderData);
       if (res.data.url) window.location.href = res.data.url;
     } catch (err) {
       alert("Lỗi thanh toán!");
@@ -99,7 +112,13 @@ export default function GioHang() {
                         </div>
                       </td>
                       <td>{Number(item.donGia).toLocaleString()} đ</td>
-                      <td className="text-center">{item.soLuong}</td>
+                      <td className="text-center">
+                        <div className="d-flex align-items-center justify-content-center">
+                          <button className="btn btn-sm btn-outline-secondary" onClick={() => updateQuantity(item.maSanPham, item.soLuong - 1)}>-</button>
+                          <span className="mx-2">{item.soLuong}</span>
+                          <button className="btn btn-sm btn-outline-secondary" onClick={() => updateQuantity(item.maSanPham, item.soLuong + 1)}>+</button>
+                        </div>
+                      </td>
                       <td className="text-end fw-bold text-danger">
                         {(item.donGia * item.soLuong).toLocaleString()} đ
                       </td>

@@ -14,7 +14,7 @@ namespace backend.Dtos
     public class CreateOrderDto
     {
         public string MaKhachHang { get; set; } = string.Empty;
-        public decimal TongTien { get; set; }
+        public double TongTien { get; set; }
         public string? VnpTransactionNo { get; set; }
         public string? PhuongThucThanhToan { get; set; }
         public List<OrderDetailDto> OrderDetails { get; set; } = new();

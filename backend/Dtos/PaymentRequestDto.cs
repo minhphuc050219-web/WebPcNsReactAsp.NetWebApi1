@@ -4,5 +4,6 @@ namespace backend.Dtos
     {
         public decimal Amount { get; set; }
         public string OrderInfo { get; set; }
+        public int MaKhachHang { get; set; }
     }
 }

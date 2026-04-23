@@ -9,7 +9,7 @@ namespace backend.Models
         public int MaDonHang { get; set; }
 
         [Required]
-        public string MaKhachHang { get; set; } // ForeignKey tới register
+        public int MaKhachHang { get; set; } // ForeignKey tới register
 
         [Required]
         public DateTime NgayDat { get; set; }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WebPcNsReactAsp.NetWebApi\\backend\\backend.csproj": {}
+    "D:\\WebPcNsReactAsp.NetWebApi\\Backend\\backend.csproj": {}
   },
   "projects": {
-    "D:\\WebPcNsReactAsp.NetWebApi\\backend\\backend.csproj": {
+    "D:\\WebPcNsReactAsp.NetWebApi\\Backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\backend.csproj",
+        "projectUniqueName": "D:\\WebPcNsReactAsp.NetWebApi\\Backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\backend.csproj",
+        "projectPath": "D:\\WebPcNsReactAsp.NetWebApi\\Backend\\backend.csproj",
         "packagesPath": "C:\\Users\\minhp\\.nuget\\packages\\",
-        "outputPath": "D:\\WebPcNsReactAsp.NetWebApi\\backend\\obj\\",
+        "outputPath": "D:\\WebPcNsReactAsp.NetWebApi\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

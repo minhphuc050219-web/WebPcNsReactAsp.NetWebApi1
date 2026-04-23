@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using backend.Helpers; 
 using backend.Dtos;
 using backend.Data;
+using backend.Models;
 using System.Text;
 using System.Web;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 
 
@@ -55,6 +57,9 @@ public IActionResult CreatePaymentUrl([FromBody] PaymentRequestDto model)
             
             vnpay.AddRequestData("vnp_TxnRef", DateTime.Now.Ticks.ToString()); 
 
+            // Thêm ID khách hàng để backend tạo order sau thanh toán
+            vnpay.AddRequestData("vnp_CustomerId", model.MaKhachHang.ToString()); 
+
             string baseUrl = _configuration["Vnpay:BaseUrl"] ?? "";
             string hashSecret = _configuration["Vnpay:HashSecret"] ?? "";
 
@@ -64,7 +69,7 @@ public IActionResult CreatePaymentUrl([FromBody] PaymentRequestDto model)
         }
 
         [HttpGet("vnpay-return")]
-        public IActionResult VnpayReturn()
+        public async Task<IActionResult> VnpayReturn()
         {
             var vnpay = new VnPayLibrary();
 
@@ -99,9 +104,45 @@ public IActionResult CreatePaymentUrl([FromBody] PaymentRequestDto model)
                 {
                     string txnRef = Request.Query["vnp_TxnRef"];
                     string amount = Request.Query["vnp_Amount"];
+                    string customerId = Request.Query["vnp_CustomerId"];
                     
-                    // TODO: Create order logic here
-                    // _context.order.Add(new order { ... });
+                    // Tạo order từ giỏ hàng
+                    var cart = _context.cart.FirstOrDefault(c => c.MaKhachHang == int.Parse(customerId));
+                    if (cart == null) return BadRequest("Giỏ hàng không tồn tại!");
+                    
+                    var newOrder = new order {
+                        MaKhachHang = int.Parse(customerId),
+                        NgayDat = DateTime.Now,
+                        TongTien = decimal.Parse(amount) / 100,
+                        TrangThai = "Đã thanh toán",
+                        VnpTransactionNo = Request.Query["vnp_TransactionNo"],
+                        PhuongThucThanhToan = "VNPAY"
+                    };
+                    _context.order.Add(newOrder);
+                    await _context.SaveChangesAsync();
+                    
+                    // Sao chép cartdetail sang orderdetail
+                    var cartDetails = _context.cartdetail.Where(d => d.MaCart == cart.MaCart);
+                    foreach (var item in cartDetails) {
+                        _context.orderdetail.Add(new orderdetail {
+                            MaDonHang = newOrder.MaDonHang,
+                            MaSanPham = item.MaSanPham,
+                            SoLuong = (int)item.SoLuongSanPham,
+                            DonGia = (decimal)_context.product.FirstOrDefault(p => p.MaSanPham == item.MaSanPham).DonGia
+                        });
+                        
+                        // Giảm tồn kho sản phẩm
+                        var product = _context.product.FirstOrDefault(p => p.MaSanPham == item.MaSanPham);
+                        if (product != null) {
+                            product.SoLuong -= item.SoLuongSanPham;
+                        }
+                    }
+                    await _context.SaveChangesAsync();
+                    
+                    // Xóa giỏ hàng
+                    _context.cartdetail.RemoveRange(cartDetails);
+                    cart.CostCart = 0;
+                    await _context.SaveChangesAsync();
                     
                     return Ok(new { success = true, message = "Thanh toán thành công, đơn hàng đã tạo!" });
                 }

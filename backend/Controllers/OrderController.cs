@@ -21,7 +21,7 @@ namespace backend.Controllers
         public async Task<ActionResult> GetUserOrders(string maKhachHang)
         {
             var orders = await _context.order
-                .Where(o => o.MaKhachHang == maKhachHang)
+                .Where(o => o.MaKhachHang == int.Parse(maKhachHang))
                 .OrderByDescending(o => o.NgayDat)
                 .ToListAsync();
             return Ok(orders);
@@ -32,9 +32,9 @@ namespace backend.Controllers
         {
             var newOrder = new order
             {
-                MaKhachHang = dto.MaKhachHang,
+                MaKhachHang = int.Parse(dto.MaKhachHang),
                 NgayDat = DateTime.Now,
-                TongTien = (decimal)dto.TongTien, // ✅ Fix lỗi: Cast từ double sang decimal
+                TongTien = (decimal)dto.TongTien,
                 TrangThai = "Chờ xác nhận",
                 VnpTransactionNo = dto.VnpTransactionNo ?? "",
                 PhuongThucThanhToan = dto.PhuongThucThanhToan ?? "VNPAY"

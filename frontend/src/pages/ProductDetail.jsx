@@ -3,6 +3,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 // Đã xóa 1 dòng import BASE_URL bị trùng
 import { BASE_URL } from "../api";
 import { getProduct } from "../api/productAPI";
+import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -15,6 +17,9 @@ export default function ProductDetail() {
   
   // ✅ THÊM STATE ĐỂ QUẢN LÝ NÚT YÊU THÍCH
   const [isFavorite, setIsFavorite] = useState(false);
+
+  // Lấy thông tin user từ AuthContext
+  const { auth } = useAuth();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,27 +69,26 @@ export default function ProductDetail() {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    if (product && quantity > 0) {
-      const cartItem = {
-        id: product.maSanPham,
-        name: product.tenSanPham,
-        price: product.donGia,
-        image: product.hangHoaImages,
-        quantity: quantity,
-      };
-      
-      const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
-      const existingItem = existingCart.find(item => item.id === product.maSanPham);
-      
-      if (existingItem) {
-        existingItem.quantity += quantity;
-      } else {
-        existingCart.push(cartItem);
-      }
-      
-      localStorage.setItem("cart", JSON.stringify(existingCart));
+  const handleAddToCart = async () => {
+    if (!product || quantity <= 0) return;
+    
+    if (!auth?.id) {
+      alert("Vui lòng đăng nhập để thêm vào giỏ hàng!");
+      navigate('/login'); // Chuyển đến trang đăng nhập
+      return;
+    }
+    
+    try {
+      const response = await axios.post(`${BASE_URL}/api/Cart/add-to-cart`, {
+        MaKhachHang: auth.id,
+        MaSanPham: product.maSanPham,
+        SoLuong: quantity,
+        DonGia: product.donGia
+      });
       alert("Thêm giỏ hàng thành công!");
+    } catch (error) {
+      console.error("Lỗi thêm giỏ hàng:", error);
+      alert("Lỗi: " + (error.response?.data?.message || error.message));
     }
   };
 

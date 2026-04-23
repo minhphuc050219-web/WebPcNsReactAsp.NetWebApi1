@@ -85,7 +85,7 @@ namespace backend.Controllers
         [HttpPost("remove-by-product")]
         public IActionResult RemoveByProduct([FromBody] CartDeleteDto dto)
         {
-            var cart = _context.cart.FirstOrDefault(c => c.MaKhachHang == 1 && c.TrangThaiCart == true); // Hardcode ID 1
+            var cart = _context.cart.FirstOrDefault(c => c.MaKhachHang == dto.MaKhachHang && c.TrangThaiCart == true);
             if (cart == null) return NotFound("Không tìm thấy giỏ hàng");
 
             var detail = _context.cartdetail.FirstOrDefault(d => d.MaCart == cart.MaCart && d.MaSanPham.Trim() == dto.MaSanPham.Trim());
@@ -99,6 +99,26 @@ namespace backend.Controllers
             _context.SaveChanges();
 
             return Ok(new { message = "Xóa thành công!" });
+        }
+
+        [HttpPost("update-quantity")]
+        public IActionResult UpdateQuantity([FromBody] UpdateQuantityDto dto)
+        {
+            var cart = _context.cart.FirstOrDefault(c => c.MaKhachHang == dto.MaKhachHang && c.TrangThaiCart == true);
+            if (cart == null) return NotFound("Không tìm thấy giỏ hàng");
+
+            var detail = _context.cartdetail.FirstOrDefault(d => d.MaCart == cart.MaCart && d.MaSanPham.Trim() == dto.maSanPham.Trim());
+            if (detail == null) return NotFound("Không tìm thấy sản phẩm");
+
+            detail.SoLuongSanPham = dto.soLuong;
+            detail.CostCart = (decimal)(detail.SoLuongSanPham * (int)_context.product.FirstOrDefault(p => p.MaSanPham.Trim() == dto.maSanPham.Trim()).DonGia);
+            _context.SaveChanges();
+
+            // Update cart total
+            cart.CostCart = _context.cartdetail.Where(d => d.MaCart == cart.MaCart).Sum(d => d.CostCart);
+            _context.SaveChanges();
+
+            return Ok(new { message = "Cập nhật thành công!" });
         }
     }
 }
